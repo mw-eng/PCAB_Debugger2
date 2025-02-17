@@ -75,13 +75,13 @@ SetLPM {0/1/false/true} | low power modeの設定<br>{1/true} : Low Power MODE<b
 
 コマンド | 内容
 :--|:--
-GetTMP.ID {x} | Get Temperature sensor ID.<br>{x} : Temp IC No.<br>{0} gets all temperature data.
-GetTMP.Val {x} | Get Temperature.<br>{x} : Temp IC No.<br>{0} gets all temperature data.
-GetTMP.CPU | Get CPU Temperature.
-GetVd | Get Vd Value.
-GetId | Get Id Value.
-GetVin | *Support with v1.2.0 or later*<br>Get Vin Value.
-GetPin | *Support with v1.2.0 or later*<br>Get Pin Value.
+GetTMP.ID {x} | 温度センサIDの取得<br>{x} : 温度センサIC番号(1～15)<br>{0} を指定した場合は全ての温度センサIDを取得
+GetTMP.Val {x} | 温度センサ値の取得<br>{x} : 温度センサIC番号(1～15)<br>{0} を指定した場合は全ての温度センサ値を取得
+GetTMP.CPU | CPU温度の取得
+GetVd | Vd値の取得
+GetId | Id値の取得
+GetVin | Vin値の取得
+GetPin | Pin値の取得
 
 </details>
 <details>
@@ -89,19 +89,19 @@ GetPin | *Support with v1.2.0 or later*<br>Get Pin Value.
 
 コマンド | 内容
 :--|:--
-SMEM ({x}) ({y-z}\|{z}) | Save state to memory(ROM).<br>However, whether or not it can be saved depends on the boot mode.<br>To save the default setting, set {z} to 0 or unspecified. ({z} can be specified as 0 to 3.)<br>If {y-z} is specified, it will be written to the specified setting number. ({y} can be specified as 0 to 15.)<br>A sector number can be specified for {x}. The sector numbers available to the user are 0 to 13.<br>*14 is the default setting area when no sector number is specified, and 15 is the data storage area at factory shipment.*<br>*By specifying the sector number, you can save 15×16×4 (=960) settings.*<br>*The Auto Load Boot uses the settings stored in unspecified {z} (sector number 14, setting numbers 0 to 0).*
-LMEM ({x}) ({y-z}\|{z}) | Load state from memory(ROM).<br>Arguments are the same as SMEM.
-GetMODE | Get boot mode.
-GetIDN | Get device identification character.
-*IDN? | Same as GetIDN.
-GetIDR | Get ROM identification character.
-ECHO {0/1/false/true} | Set echo mode.<br>*Do not enable it if you are connected to multiple devices.*<br>{1/true} : With echo.<br>{0/false} : Without echo.
-CUI {0/1/false/true} | CUI Control Use<br>{1/true} : CUI MODE<br>{0/false} : GUI MODE<br>Default is CUI MODE.
-RST | Restore factory default settings.<br>*PS all 0<br>DSA all 2dB(No,0 = 0dB)<br>STB all 0(RUN MODE)<br>LPM 0(Full Power MODE)*
-*RST | Same as RST.
-Reboot | Reload setup function.
-SetBR {x}| BAUD RATE changes.<br>{x} : Baud rate value.
-BCM | Switch to binary communication mode.
+SMEM ({x}) ({y-z}\|{z}) | 設定をメモリ(ROM)に保存<br>但し、保存可否はブートモードに依存<br>{z} を 0 または未指定にすることでデフォルト設定を保存 ({z} は 0~3を指定可能)<br>{y-z}を指定した場合は、指定した設定番号に書込み({y} は0～15を指定可能)<br>{x}はセクタ番号を指定し、ユーザが使用可能なセクタ番号は0～13です。<br>*14はセクター番号を指定しない場合のデフォルト設定領域で15は工場出荷時のデータ格納領域です。*<br>*セクタ番号を指定する事で 15×16×4 (=960) 個の設定が保存可能です。*<br>*自動ロードは未指定の {z} (セクタ番号 14, 設定番号 0 )に保存された設定値を使用します。*
+LMEM ({x}) ({y-z}\|{z}) | メモリ(ROM)から設定を読込み<br>引数はSMEMと同一
+GetMODE | ブートモードの取得
+GetIDN | デバイス識別子(バージョン等)を取得
+*IDN? | GetIDNに同じ
+GetIDR | ROM識別子を取得
+ECHO {0/1/false/true} | エコーモードを設定<br>*複数のユニットを接続(RS485の1対多状態に)している場合は有効にしないこと*<br>{1/true} : エコー有<br>{0/false} : エコー無
+CUI {0/1/false/true} | CUIモードの指定<br>{1/true} : CUIモード<br>{0/false} : GUIモード(1行で応答)<br>デフォルト(起動時)はCUIモード
+RST | 工場出荷時の設定に戻す<br>*PS all 0<br>DSA all 2dB(No,0 = 0dB)<br>STB all 0(RUN MODE)<br>LPM 0(Full Power MODE)*
+*RST | RSTに同じ
+Reboot | CPUのリブート
+SetBR {x}| ボーレートの変更<br>{x} : ボーレート値
+BCM | バイナリ通信モードに切替え
 
 </details>
 <details>
@@ -118,7 +118,7 @@ OROM {x-yz} {HEX} | Overwrite sector data to ROM.<br>{x-yz} : Specify the *block
 </details>
 
 <details>
-<summary>Binary Communication Mode command</summary>
+<summary>バイナリ通信モードコマンド</summary>
 
 コマンド | 内容
 :--|:--
