@@ -3,7 +3,7 @@
 再構築に際して1ワイヤ温度センサの取得時間改善を行っています。
 
 ## フラッシュROM領域
-ファームウェアはフラッシュROMの先頭に格納され、ファームウェアのサイズに因って使用される領域は異なります。<br>
+ファームウェアはフラッシュROMの先頭に格納され、ファームウェアのサイズに応じて使用される領域は異なります。<br>
 フラッシュROMのラストブロックにはSTATE情報と工場設定が格納され、最後の16バイトには15文字のシリアル番号がASCIIコードとラストバイトには文字数が格納されます。<br>
 
 ## RS485シリアルポート(URAT)の設定
@@ -109,11 +109,11 @@ BCM | バイナリ通信モードに切替え
 
 コマンド | 内容
 :--|:--
-SetSN {x} | *Can only be changed in maintenance mode.*<br>Set Bord SN.<br>{x} : Serial Number strings.
-RROM {x-yz} | Read page data from ROM.<br>{x-yz} : Specify the *block number(x), *sector number(y) + page number(z)* in hexadecimal format, separated by "-".
-WROM {x-yz} {HEX} | Write page data to ROM.<br>{x-yz} : Specify the *block number(x), *sector number(y) + page number(z)* in hexadecimal format, separated by "-".<br>{HEX} : HEX data to write.<br>*Data will not be erased.*
-EROM {x-y} | Erase page data from ROM.<br>{x} : Specify the *block number(x)* and *sector number(y)* as hexadecimal format separated by "-".
-OROM {x-yz} {HEX} | Overwrite sector data to ROM.<br>{x-yz} : Specify the *block number(x)* and *sector number(y) + page number(z)* as hexadecimal format separated by "-".<br>{HEX} : HEX data to write.<br>*Data is written after erasing.*
+SetSN {x} | *メンテナンスモードでのみ変更可能*<br>ボードのシリアル番号を設定<br>{x} : シリアル番号文字列
+RROM {x-yz} | ROMのページデータ読込み<br>{x-yz} : *ブロック番号(x), *セクタ番号(y) + ページ番号(z)* を16進数で指定
+WROM {x-yz} {HEX} | ROMのページデータ書込み.<br>{x-yz} : *ブロック番号(x), *セクタ番号(y) + ページ番号(z)* を16進数で指定<br>{HEX} : 書込むデータ(16進数文字列)<br>*データは消去されず上書きのみ(要EROM)*
+EROM {x-y} | ROMのページデータ消去<br>{x} : *ブロック番号(x)* と *セクタ番号(y)* を16進数で指定
+OROM {x-yz} {HEX} | ROMのセクタデータを上書き<br>{x-yz} : *ブロック番号(x), *セクタ番号(y) + ページ番号(z)* を16進数で指定<br>{HEX} : 書込むデータ(16進数文字列)<br>*データは消去(EROM)後に書込み*
 
 </details>
 
@@ -122,78 +122,78 @@ OROM {x-yz} {HEX} | Overwrite sector data to ROM.<br>{x-yz} : Specify the *block
 
 コマンド | 内容
 :--|:--
-0xC0 | Frame end code.
-0xFF | SerialNumber separator code.
-0xB0 {Byte} | Write Byte data to the input attenuator.
-0xC1 {Binary} | Write binary data to the digital step attenuator.<br>The binary data must be specified in the order of DSA numbers 1 to 15, and each DSA setting must be specified in 8 bits ( i.e. 15 bytes of data ).
-0xC2 {Binary} | Write binary data to the digital phase sifter.<br>The binary data must be specified in the order of DPS numbers 1 to 15, and each DPS setting must be specified in 8 bits ( i.e. 15 bytes of data ).
-0xC3 {0x00/0x01} | Set AMP STBY.<br>{0x00} : Run MODE<br>{0x01} : Standby MODE
-0xC4 {0x00/0x01} | Set DRA STBY.<br>{0x00} : Run MODE<br>{0x01} : Standby MODE
-0xC5 {0x00/0x01} | Set LNA STBY.<br>{0x00} : Run MODE<br>{0x01} : Standby MODE
-0xC6 {0x00/0x01} | Set low power mode.<br>{0x00} : Full Power MODE<br>{0x01} : Low Power MODE
-0xD0 | Get input attenuator settings.<br>The response data is in the same binary format as it was written.
-0xD1 | Get digital step attenuator settings.<br>The response data is in the same binary format as it was written.
-0xD2 | Get digital phase sifter settins.<br>The response data is in the same binary format as it was written.
-0xD3 | Get AMP STBY.<br>The response data is in the same binary format as it was written.
-0xD4 | Get DRA STBY.<br>The response data is in the same binary format as it was written.
-0xD5 | Get LNA STBY.<br>The response data is in the same binary format as it was written.
-0xD6 | Get low power mode.<br>The response data is in the same binary format as it was written.
-0xE1 | Get all temperature sensor IDs.<br> 8byte * 15
-0xE2 | Get all temperature data.<br>The response data is 2 bytes * 15 of raw data.
-0xE3 | Get CPU Temperature(AD Value).<br>The response data is 2 bytes of raw data.
-0xE4 | Get Vd Value.<br>The response data is 2 bytes of raw data.
-0xE5 | Get Id Value.<br>The response data is 2 bytes of raw data.
-0xE6 | Get Vin Value.<br>The response data is 2 bytes of raw data.
-0xE7 | Get Pin Value.<br>The response data is 2 bytes of raw data.
-0xEA | Get Mode.<br>The response data is 1 bytes of raw data.
-0xEE | Get all Analog values.<br>The responce data is {Vd(2byte) + Id(2byte) + Vin(2byte) + Pin(2byte) + CPU Temp(2byte)} of raw data.
-0xEF | Get all sensor values.<br>The responce data is {AnalogValues(10byte)+TempratureData(2byte * 15)}
-0xF0 | Get device identification character.
-0xFA | Restore factory default settings.<br>PS all 0<br>DSA all 2dB(No,0 = 0dB)<br>STB all 0(RUN MODE)<br>LPM 0(Full Power MODE)
-0xFB {Address} | Save state to memory(ROM).<br>However, whether or not it can be saved depends on the boot mode.<br>To save the default settings, set {Address} to 0x00 or leave it unspecified. ({Address} can be specified from 0x00 to 0x03.)<br>If you specify the sector number (4 bits), setting number (4 bits), and setting number (specified in one byte from 0x00 to 0x03), it will be written to the specified setting number. (Default is {0xE0}{0x00})<br>The range that can be specified is the same as for WR.
-0xFC {Address} | Load state from memory(ROM).<br>Argument are the same as 0xFB.
-0xFD {BAUD RATE} | BAUD RATE chages.<br>{BAUD RATE} : Specify the value in 4bytes.
-0xAA {Address} | Read sector data from ROM.<br>{Address(3byte)} : Specify the address to read (sector by sector)
-0xBB {Address} {Binary} | Overwrite sector data to ROM.<br>{Address(3byte)} : Specify the address to write (sector by sector).<br>{Binary(4096byte)} * Specify the sector data to write.
-0xFE | Switch to ASCII communication mode.
+0xC0 | データフレーム終了コード
+0xFF | シリアル番号の区切りコード
+0xB0 {Byte} | 入力ATTにバイトデータ書込み
+0xC1 {Binary} | DSA(Digital Step Attenuator) にバイナリデータを書込み<br>バイナリデータはDSA番号1～15の順に1バイト(8bit)で指定する。(計15byte)<br>ASCII通信モードとは異なり、設定と同時に書込みが実行される
+0xC2 {Binary} | DPS(Digital Phase Shifter) にバイナリデータを書込み<br>バイナリデータはDSA番号1～15の順に1バイト(8bit)で指定する。(計15byte)<br>ASCII通信モードとは異なり、設定と同時に書込みが実行される
+0xC3 {0x00/0x01} | AMP STBYの設定<br>{0x00} : Run MODE<br>{0x01} : Standby MODE
+0xC4 {0x00/0x01} | DRA STBYの設定<br>{0x00} : Run MODE<br>{0x01} : Standby MODE
+0xC5 {0x00/0x01} | LNA STBYの設定<br>{0x00} : Run MODE<br>{0x01} : Standby MODE
+0xC6 {0x00/0x01} | low power modeの設定<br>{0x00} : Full Power MODE<br>{0x01} : Low Power MODE
+0xD0 | 入力ATTの設定値取得<br>応答データは0xB0のバイトデータに同じ
+0xD1 | DSAの設定値取得<br>応答データは0xC1に同じ
+0xD2 | DPSの設定値取得<br>応答データは0xC2に同じ
+0xD3 | AMP STBYの状態取得
+0xD4 | DRA STBYの状態取得
+0xD5 | LNA STBYの状態取得
+0xD6 | low power modeの状態取得
+0xE1 | 全ての温度センサICを取得<br>8 byte * 15
+0xE2 | 全ての温度センサ値を取得<br>2 bytes * 15 の生値(温度にする場合、27.0f-{[DAT]/16.0f-0.706f}/0.001721f)
+0xE3 | CPU温度(AD)値を取得<br>2 bytes の生値(温度にする場合、[DAT]*3.3f/4096)
+0xE4 | Vd(AD)値を取得<br>2 bytes の生値(Vd電圧にする場合、[DAT]*3.3f/1024 * 10.091f)
+0xE5 | Id(AD)値を取得<br>2 bytes の生値(Id電流にする場合、{[DAT]*3.3f/1024 - 0.08f} / 0.737f)
+0xE6 | Vin(AD)値を取得<br>2 bytes の生値(Vin電圧にする場合、[DAT]*3.3f/1024 * 15.0f)
+0xE7 | Pin(AD)値を取得<br>2 bytes の生値(電圧にする場合、[DAT]*3.3f/1024)
+0xEA | ブートモードの取得<br>1 byte
+0xEE | 全てのアナログ値を取得<br>応答データは {Vd(2byte) + Id(2byte) + Vin(2byte) + Pin(2byte) + CPU Temp(2byte)} の生データ
+0xEF | 全てのセンサ値を取得<br>応答データは {AnalogValues(10byte)+TempratureData(2byte * 15)}
+0xF0 | デバイスの識別文字列を取得(ASCIIコード)
+0xFA | 工場出荷時の設定に戻す<br>PS all 0<br>DSA all 2dB(No,0 = 0dB)<br>STB all 0(RUN MODE)<br>LPM 0(Full Power MODE)
+0xFB {Address} | 設定をメモリ(ROM)に保存<br>条件等はASCIIのSMEMに同じ<br>{Address} を 0x00 または未指定にすることでデフォルト設定の保存<br>セクタ番号(4 bits), 設定番号 (4 bitsで0x00～0x03まで)をしていすると指定したアドレスに書込まれます。(デフォルトのアドレスは{0xE0}{0x00}になる)
+0xFC {Address} | メモリ(ROM)から設定を読込み<br>アドレスは0xFBに同じ
+0xFD {BAUD RATE} | ボーレートの変更<br>{BAUD RATE} : ボーレート値を4byteで指定
+0xAA {Address} | ROMのセクタデータ読込み<br>{Address(3byte)} : セクタ毎のアドレスを指定
+0xBB {Address} {Binary} | ROMのセクタデータ書込み<br>{Address(3byte)} : セクタ毎のアドレスを指定<br>{Binary(4096byte)} : 書込むセクタデータ
+0xFE | ASCII通信モードに切替え
 
-Return Code | Description
+応答コード | 内容
 :--|:--
-0xC0 | Frame end code.
-0x00 | Successfull code.
-0xF1 | Command not found error code.
-0xF2 | Data length error code.
-0xFE | Other errors code.
-{binary} | binary data.
+0xC0 | データフレーム終了コード
+0x00 | 処理に成功
+0xF1 | コマンドが存在しないエラーコード
+0xF2 | 想定外のデータ長が指定されたエラーコード
+0xFE | その他のエラーコード
+{binary} | 取得時のバイナリデータ
 
 </details>
 
-## Hardware Switch Configuration
-List of settings by onboard hardware switch (SW1) status.<br>
-*In v1.3.0 and later, sw1 and sw2 are assigned to output pins and must be fixed in the OFF state.*
+## ハードウェアスイッチ構成
+オンボードハードウェアスイッチ(SW1) の状態による設定一覧<br>
+*SW1およびSW2は出力ピンに割当てられているため、OFF状態に固定する必要が有る*
 
 <img src="https://github.com/mw-eng/PCAB_Debugger/blob/master/PCAB_Debugger_RP2040/assets/SW1.png?raw=true" width="100px"> 0 = OFF(H) / 1 = ON(L)  
   
 <details open>
-<summary>Switch status 0x00 to 0x0F</summary>
+<summary>スイッチ状態 0x00 ～ 0x0F</summary>
 
-Number | SW6 | SW5 | SW4 | SW3 | HEX | Stateus | Description
+Number | SW6 | SW5 | SW4 | SW3 | HEX | Stateus | 内容
 :--:|:--:|:--:|:--:|:--:|:--:|:--:|:--
-0 | 0 | 0 | 0 | 0 | 0x00 | Default | Default Status Boot.<br>*DPS(@All) = 0deg*<br>*DSA(@Input) = 0dB*<br>*DSA(@All except input) = 2dB*<br>*ALL Active Mode*
-1 | 0 | 0 | 0 | 1 | 0x01 | Auto Load Boot. | Load the state (0) saved in ROM and boot.<br>*Picture Stateus*
-2 | 0 | 0 | 1 | 0 | 0x02 | Allow settings to be saved. | Settins can be write in ROM.
-3 | 0 | 0 | 1 | 1 | 0x03 | Auto Load Boot.<br>and<br>Allow settings to be saved. | Allows to start autoload and save settings.<br>*Basic usage conditions *
+0 | 0 | 0 | 0 | 0 | 0x00 | Default | デフォルト状態で起動<br>*DPS(@All) = 0deg*<br>*DSA(@Input) = 0dB*<br>*DSA(@All except input) = 2dB*<br>*ALL Active Mode*
+1 | 0 | 0 | 0 | 1 | 0x01 | Auto Load Boot. | ROMのデフォルト値に保存された設定を読込んで起動を有効化
+2 | 0 | 0 | 1 | 0 | 0x02 | Allow settings to be saved. | 設定のROMに保存を有効化
+3 | 0 | 0 | 1 | 1 | 0x03 | Auto Load Boot.<br>and<br>Allow settings to be saved. | Auto LoadおよびAllow settings to be savedの有効化<br>*基本は本状態で使用する*
 4 | 0 | 1 | 0 | 0 | 0x04 | State4 | Unused.
 5 | 0 | 1 | 0 | 1 | 0x05 | State5 | Unused.
 6 | 0 | 1 | 1 | 0 | 0x06 | State6 | Unused.
 7 | 0 | 1 | 1 | 1 | 0x07 | State7 | Unused.
 8 | 1 | 0 | 0 | 0 | 0x08 | State8 | Unused.
 9 | 1 | 0 | 0 | 1 | 0x09 | State9 | Unused.
-10 | 1 | 0 | 1 | 0 | 0x0A | State10 | Factory reset on boot. | If the switch is in this state at startup, the system boots to factory defaults and restore the autoload settings to their initial state.<br>*Settings outside the default settings area will not be changed.*
+10 | 1 | 0 | 1 | 0 | 0x0A | State10 | Factory reset on boot. | 工場出荷時のデフォルト設定で起動し、自動ロードの設定を初期状態に復元する<br>*デフォルト設定領域外については変更されない*
 11 | 1 | 0 | 1 | 1 | 0x0B | State11 | Unused.
 12 | 1 | 1 | 0 | 0 | 0x0C | State12 | Unused.
 13 | 1 | 1 | 0 | 1 | 0x0D | State13 | Unused.
 14 | 1 | 1 | 1 | 0 | 0x0E | State14 | Unused.
-15 | 1 | 1 | 1 | 1 | 0x0F | State15 | Boot in the maintenance mode. | If the switch is in this state at startup, it boots in the administrator mode.<br>As general rule, do not use it as it may overwrite the ROM area where factory settings and serial numbers are stored.
+15 | 1 | 1 | 1 | 1 | 0x0F | State15 | Boot in the maintenance mode. | 管理者モードで起動<br>工場出荷時の設定やシリアル番号が保存されている領域等も変更できてしまうため、原則使用しない
 
 </details>
