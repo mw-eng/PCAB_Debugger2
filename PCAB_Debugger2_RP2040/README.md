@@ -189,11 +189,11 @@ Number | SW6 | SW5 | SW4 | SW3 | HEX | Stateus | 内容
 7 | 0 | 1 | 1 | 1 | 0x07 | State7 | Unused.
 8 | 1 | 0 | 0 | 0 | 0x08 | State8 | Unused.
 9 | 1 | 0 | 0 | 1 | 0x09 | State9 | Unused.
-10 | 1 | 0 | 1 | 0 | 0x0A | State10 | Factory reset on boot. | 工場出荷時のデフォルト設定で起動し、自動ロードの設定を初期状態に復元する<br>*デフォルト設定領域外については変更されない*
+10 | 1 | 0 | 1 | 0 | 0x0A | Factory reset on boot. | 工場出荷時のデフォルト設定で起動し、自動ロードの設定を初期状態に復元する<br>*デフォルト設定領域外については変更されない*
 11 | 1 | 0 | 1 | 1 | 0x0B | State11 | Unused.
 12 | 1 | 1 | 0 | 0 | 0x0C | State12 | Unused.
 13 | 1 | 1 | 0 | 1 | 0x0D | State13 | Unused.
 14 | 1 | 1 | 1 | 0 | 0x0E | State14 | Unused.
-15 | 1 | 1 | 1 | 1 | 0x0F | State15 | Boot in the maintenance mode. | 管理者モードで起動<br>工場出荷時の設定やシリアル番号が保存されている領域等も変更できてしまうため、原則使用しない
+15 | 1 | 1 | 1 | 1 | 0x0F | Boot in the maintenance mode. | 管理者モードで起動<br>工場出荷時の設定やシリアル番号が保存されている領域等も変更できてしまうため、原則使用しない
 
 </details>
