@@ -49,6 +49,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="cntPort.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="cntPorts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="winMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -56,6 +64,13 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="clsVisa32.cs" />
+    <Compile Include="cntPort.xaml.cs">
+      <DependentUpon>cntPort.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cntPorts.xaml.cs">
+      <DependentUpon>cntPorts.xaml</DependentUpon>
     </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>

@@ -16,17 +16,13 @@ using System.Windows.Shapes;
 namespace PCAB_Debugger2_GUI
 {
     /// <summary>
-    /// winMain.xaml の相互作用ロジック
+    /// Ports.xaml の相互作用ロジック
     /// </summary>
-    public partial class winMain : Window
+    public partial class Ports : UserControl
     {
-        public winMain()
+        public Ports()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
         }
     }
 }
