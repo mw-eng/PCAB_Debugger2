@@ -38,6 +38,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Management" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -54,10 +55,17 @@
     <Compile Include="cntAutoMeasure.xaml.cs">
       <DependentUpon>cntAutoMeasure.xaml</DependentUpon>
     </Compile>
+    <Compile Include="cntControl.xaml.cs">
+      <DependentUpon>cntControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="winMonitor.xaml.cs">
       <DependentUpon>winMonitor.xaml</DependentUpon>
     </Compile>
     <Page Include="cntAutoMeasure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="cntControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

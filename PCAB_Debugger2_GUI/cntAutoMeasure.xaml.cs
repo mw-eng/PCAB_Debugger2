@@ -23,10 +23,10 @@ namespace PCAB_Debugger2_GUI
     /// </summary>
     public partial class AutoMeasure : UserControl
     {
-        private int? sesn;
+        private VisaResource sesn;
         public delegate void StartButtonClickEventHandler(object sender, RoutedEventArgs e, string dirPath);
         public event StartButtonClickEventHandler ButtonClickEvent;
-        public int? setResourceManager
+        public VisaResource setResourceManager
         {
             get { return sesn; }
             set
