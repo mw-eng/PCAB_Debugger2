@@ -1,17 +1,13 @@
-﻿<Window x:Class="PCAB_Debugger2_GUI.winMain"
+﻿<Window x:Class="PCAB_Debugger2_GUI.winMonitor"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
         mc:Ignorable="d"
-        Title="winMain" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="1*"/>
-        </Grid.RowDefinitions>
+        Title="PCAB Debugger Monitor" Height="450" Width="800" Closing="Window_Closing"
+        SourceInitialized="Window_SourceInitialized" Icon="/PCAB_Debugger2_GUI_Monitor.ico">
+    <Grid x:Name="MONITOR_GRID">
         <local:UnitMonitor/>
-        <Button Grid.Row="1" Margin="5" Click="Button_Click"/>
     </Grid>
 </Window>

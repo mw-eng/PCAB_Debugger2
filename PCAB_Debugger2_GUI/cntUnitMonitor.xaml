@@ -4,9 +4,302 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             mc:Ignorable="d"
+             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+    <Grid Grid.Column="1">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" x:Name="GRID_TITLE"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        <Viewbox Grid.Row="0">
+            <Label Name="LABEL_TITLE" Content="SN 0000000"/>
+        </Viewbox>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100*"/>
+                <ColumnDefinition Width="100*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" Margin="5" Background="#FFBBFFB1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" >
+                    <Label Content="CPU TMP"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" >
+                    <Label Name="SNS_CPU_TEMP_LABEL" Content="ND"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" Margin="5" Background="#FFBBFFB1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" >
+                    <Label Content="SNS Id"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" >
+                    <Label Name="SNS_ID_LABEL" Content="ND"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0" Margin="5" Background="#FFBBFFB1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" >
+                    <Label Content="SNS Vin"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" >
+                    <Label Name="SNS_VIN_LABEL" Content="ND"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1" Margin="5" Background="#FFBBFFB1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" >
+                    <Label Content="SNS Vd"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" >
+                    <Label Name="SNS_VD_LABEL" Content="ND"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="0" Margin="5" Background="#FFBBFFB1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" >
+                    <Label Content="SNS Pin"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" >
+                    <Label Name="SNS_PIN_LABEL" Content="ND"/>
+                </Viewbox>
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1" Margin="5" Background="#FFBBFFB1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Viewbox Grid.Column="0" >
+                    <Label Content="TMP AVG"/>
+                </Viewbox>
+                <Viewbox Grid.Column="1" >
+                    <Label Name="TMP_AVG_LABEL" Content="ND"/>
+                </Viewbox>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="7*"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.Row="0" Margin="5" HorizontalAlignment="Left">
+                <Label Content="TEMPERATURE [degreeC]" />
+            </Viewbox>
+            <Grid Grid.Row="1" Margin="5" Background="#FFBBFFB1" ShowGridLines="True" x:Name="TEMP_GRID">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Row="0" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP01CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP01VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP02CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP02VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP03CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP03VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP04CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP04VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="0" Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP05CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP05VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP06CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP06VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP07CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP07VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP08CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP08VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP09CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP09VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP10CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP10VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP11CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP11VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP12CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP12VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP13CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP13VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP14CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP14VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+                <Grid Grid.Row="2" Grid.Column="4">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Viewbox Grid.Row="0">
+                        <Label Name="TEMP15CODE" Content="ND"/>
+                    </Viewbox>
+                    <Viewbox Grid.Row="1" Grid.RowSpan="2">
+                        <Label Name="TEMP15VAL" Content="ND"/>
+                    </Viewbox>
+                </Grid>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>

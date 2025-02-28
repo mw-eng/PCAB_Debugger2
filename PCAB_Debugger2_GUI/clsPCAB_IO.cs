@@ -457,7 +457,7 @@ namespace PCAB_Debugger2_GUI
 
     public class PCAB_SerialInterface
     {
-        private const string REVISION_CHECK_STRING = "1.4.";
+        private const string REVISION_CHECK_STRING = "2.0.";
         private const int SLEEP_TIME_LOOP = 5;
         private const int SLEEP_TIME = 50;
         private SerialPort _serialPort;

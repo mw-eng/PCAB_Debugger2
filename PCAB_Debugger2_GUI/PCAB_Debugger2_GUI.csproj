@@ -50,6 +50,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="clsPCAB.cs" />
+    <Compile Include="cntAutoMeasure.xaml.cs">
+      <DependentUpon>cntAutoMeasure.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winMonitor.xaml.cs">
+      <DependentUpon>winMonitor.xaml</DependentUpon>
+    </Compile>
+    <Page Include="cntAutoMeasure.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="cntPort.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -69,6 +80,10 @@
     <Page Include="cntUnitMonitor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="winEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="winMain.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -100,10 +115,17 @@
     <Compile Include="cntUnitMonitor.xaml.cs">
       <DependentUpon>cntUnitMonitor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="winEditor.xaml.cs">
+      <DependentUpon>winEditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="winMonitor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
