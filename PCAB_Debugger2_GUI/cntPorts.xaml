@@ -5,17 +5,222 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800" Background="White">
+             Background="White">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <Style TargetType="{x:Type CheckBox}" x:Key="CHECKBOX_CONTENT_CENTER">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+            </Style>
+            <Style TargetType="{x:Type ComboBox}" x:Key="COMBOBOX_CONTENT_CENTER">
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="FontSize" Value="14px"/>
+                <Setter Property="FontFamily" Value="UD Digi Kyokasho N-R"/>
+            </Style>
+            <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" xml:space="preserve" Type="{x:Type sys:String}" x:Key="DPS_List">
+                <sys:String>  0.000 deg (000000 =  0)</sys:String>
+                <sys:String>  5.625 deg (000001 =  1)</sys:String>
+                <sys:String> 11.250 deg (000010 =  2)</sys:String>
+                <sys:String> 16.875 deg (000011 =  3)</sys:String>
+                <sys:String> 22.500 deg (000100 =  4)</sys:String>
+                <sys:String> 28.125 deg (000101 =  5)</sys:String>
+                <sys:String> 33.75  deg (000110 =  6)</sys:String>
+                <sys:String> 39.375 deg (000111 =  7)</sys:String>
+                <sys:String> 45.000 deg (001000 =  8)</sys:String>
+                <sys:String> 50.625 deg (001001 =  9)</sys:String>
+                <sys:String> 56.250 deg (001010 = 10)</sys:String>
+                <sys:String> 61.875 deg (001011 = 11)</sys:String>
+                <sys:String> 67.500 deg (001100 = 12)</sys:String>
+                <sys:String> 73.125 deg (001101 = 13)</sys:String>
+                <sys:String> 78.750 deg (001110 = 14)</sys:String>
+                <sys:String> 84.375 deg (001111 = 15)</sys:String>
+                <sys:String> 90.000 deg (010000 = 16)</sys:String>
+                <sys:String> 96.625 deg (010001 = 17)</sys:String>
+                <sys:String>101.250 deg (010010 = 18)</sys:String>
+                <sys:String>106.875 deg (010011 = 19)</sys:String>
+                <sys:String>112.500 deg (010100 = 20)</sys:String>
+                <sys:String>118.125 deg (010101 = 21)</sys:String>
+                <sys:String>123.750 deg (010110 = 22)</sys:String>
+                <sys:String>129.375 deg (010111 = 23)</sys:String>
+                <sys:String>135.000 deg (011000 = 24)</sys:String>
+                <sys:String>140.625 deg (011001 = 25)</sys:String>
+                <sys:String>146.250 deg (011010 = 26)</sys:String>
+                <sys:String>151.875 deg (011011 = 27)</sys:String>
+                <sys:String>157.500 deg (011100 = 28)</sys:String>
+                <sys:String>163.125 deg (011101 = 29)</sys:String>
+                <sys:String>168.750 deg (011110 = 30)</sys:String>
+                <sys:String>174.375 deg (011111 = 31)</sys:String>
+                <sys:String>180.000 deg (100000 = 32)</sys:String>
+                <sys:String>185.625 deg (100001 = 33)</sys:String>
+                <sys:String>191.250 deg (100010 = 34)</sys:String>
+                <sys:String>196.875 deg (100011 = 35)</sys:String>
+                <sys:String>202.500 deg (100100 = 36)</sys:String>
+                <sys:String>208.125 deg (100101 = 37)</sys:String>
+                <sys:String>213.750 deg (100110 = 38)</sys:String>
+                <sys:String>219.375 deg (100111 = 39)</sys:String>
+                <sys:String>225.000 deg (101000 = 40)</sys:String>
+                <sys:String>230.625 deg (101001 = 41)</sys:String>
+                <sys:String>236.250 deg (101010 = 42)</sys:String>
+                <sys:String>241.875 deg (101011 = 43)</sys:String>
+                <sys:String>247.500 deg (101100 = 44)</sys:String>
+                <sys:String>253.125 deg (101101 = 45)</sys:String>
+                <sys:String>258.750 deg (101110 = 46)</sys:String>
+                <sys:String>264.575 deg (101111 = 47)</sys:String>
+                <sys:String>270.000 deg (110000 = 48)</sys:String>
+                <sys:String>275.625 deg (110001 = 49)</sys:String>
+                <sys:String>281.250 deg (110010 = 50)</sys:String>
+                <sys:String>286.875 deg (110011 = 51)</sys:String>
+                <sys:String>292.500 deg (110100 = 52)</sys:String>
+                <sys:String>298.125 deg (110101 = 53)</sys:String>
+                <sys:String>303.750 deg (110110 = 54)</sys:String>
+                <sys:String>309.375 deg (110111 = 55)</sys:String>
+                <sys:String>315.000 deg (111000 = 56)</sys:String>
+                <sys:String>320.625 deg (111001 = 57)</sys:String>
+                <sys:String>326.250 deg (111010 = 58)</sys:String>
+                <sys:String>331.875 deg (111011 = 59)</sys:String>
+                <sys:String>337.500 deg (111100 = 60)</sys:String>
+                <sys:String>343.125 deg (111101 = 61)</sys:String>
+                <sys:String>348.750 deg (111110 = 62)</sys:String>
+                <sys:String>354.375 deg (111111 = 63)</sys:String>
+            </x:Array>
+            <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" xml:space="preserve" Type="{x:Type sys:String}" x:Key="DSA_List">
+                <sys:String>  0.00  dB  (000000 =  0)</sys:String>
+                <sys:String>  0.25  dB  (000001 =  1)</sys:String>
+                <sys:String>  0.50  dB  (000010 =  2)</sys:String>
+                <sys:String>  0.75  dB  (000011 =  3)</sys:String>
+                <sys:String>  1.00  dB  (000100 =  4)</sys:String>
+                <sys:String>  1.25  dB  (000101 =  5)</sys:String>
+                <sys:String>  1.50  dB  (000110 =  6)</sys:String>
+                <sys:String>  1.75  dB  (000111 =  7)</sys:String>
+                <sys:String>  2.00  dB  (001000 =  8)</sys:String>
+                <sys:String>  2.25  dB  (001001 =  9)</sys:String>
+                <sys:String>  2.50  dB  (001010 = 10)</sys:String>
+                <sys:String>  2.75  dB  (001011 = 11)</sys:String>
+                <sys:String>  3.00  dB  (001100 = 12)</sys:String>
+                <sys:String>  3.25  dB  (001101 = 13)</sys:String>
+                <sys:String>  3.50  dB  (001110 = 14)</sys:String>
+                <sys:String>  3.75  dB  (001111 = 15)</sys:String>
+                <sys:String>  4.00  dB  (010000 = 16)</sys:String>
+                <sys:String>  4.25  dB  (010001 = 17)</sys:String>
+                <sys:String>  4.50  dB  (010010 = 18)</sys:String>
+                <sys:String>  4.75  dB  (010011 = 19)</sys:String>
+                <sys:String>  5.00  dB  (010100 = 20)</sys:String>
+                <sys:String>  5.25  dB  (010101 = 21)</sys:String>
+                <sys:String>  5.50  dB  (010110 = 22)</sys:String>
+                <sys:String>  5.75  dB  (010111 = 23)</sys:String>
+                <sys:String>  6.00  dB  (011000 = 24)</sys:String>
+                <sys:String>  6.25  dB  (011001 = 25)</sys:String>
+                <sys:String>  6.50  dB  (011010 = 26)</sys:String>
+                <sys:String>  6.75  dB  (011011 = 27)</sys:String>
+                <sys:String>  7.00  dB  (011100 = 28)</sys:String>
+                <sys:String>  7.25  dB  (011101 = 29)</sys:String>
+                <sys:String>  7.50  dB  (011110 = 30)</sys:String>
+                <sys:String>  7.75  dB  (011111 = 31)</sys:String>
+                <sys:String>  8.00  dB  (100000 = 32)</sys:String>
+                <sys:String>  8.25  dB  (100001 = 33)</sys:String>
+                <sys:String>  8.50  dB  (100010 = 34)</sys:String>
+                <sys:String>  8.75  dB  (100011 = 35)</sys:String>
+                <sys:String>  9.00  dB  (100100 = 36)</sys:String>
+                <sys:String>  9.25  dB  (100101 = 37)</sys:String>
+                <sys:String>  9.50  dB  (100110 = 38)</sys:String>
+                <sys:String>  9.75  dB  (100111 = 39)</sys:String>
+                <sys:String> 10.00  dB  (101000 = 40)</sys:String>
+                <sys:String> 10.25  dB  (101001 = 41)</sys:String>
+                <sys:String> 10.50  dB  (101010 = 42)</sys:String>
+                <sys:String> 10.75  dB  (101011 = 43)</sys:String>
+                <sys:String> 11.00  dB  (101100 = 44)</sys:String>
+                <sys:String> 11.25  dB  (101101 = 45)</sys:String>
+                <sys:String> 11.50  dB  (101110 = 46)</sys:String>
+                <sys:String> 11.75  dB  (101111 = 47)</sys:String>
+                <sys:String> 12.00  dB  (110000 = 48)</sys:String>
+                <sys:String> 12.25  dB  (110001 = 49)</sys:String>
+                <sys:String> 12.50  dB  (110010 = 50)</sys:String>
+                <sys:String> 12.75  dB  (110011 = 51)</sys:String>
+                <sys:String> 13.00  dB  (110100 = 52)</sys:String>
+                <sys:String> 13.25  dB  (110101 = 53)</sys:String>
+                <sys:String> 13.50  dB  (110110 = 54)</sys:String>
+                <sys:String> 13.75  dB  (110111 = 55)</sys:String>
+                <sys:String> 14.00  dB  (111000 = 56)</sys:String>
+                <sys:String> 14.25  dB  (111001 = 57)</sys:String>
+                <sys:String> 14.50  dB  (111010 = 58)</sys:String>
+                <sys:String> 14.75  dB  (111011 = 59)</sys:String>
+                <sys:String> 15.00  dB  (111100 = 60)</sys:String>
+                <sys:String> 15.25  dB  (111101 = 61)</sys:String>
+                <sys:String> 15.50  dB  (111110 = 62)</sys:String>
+                <sys:String> 15.75  dB  (111111 = 63)</sys:String>
+            </x:Array>
+            <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" xml:space="preserve" Type="{x:Type sys:String}" x:Key="DSAin_List">
+                <sys:String>0.00  dB  (000000 =  0)</sys:String>
+                <sys:String>0.25  dB  (000001 =  1)</sys:String>
+                <sys:String>0.50  dB  (000010 =  2)</sys:String>
+                <sys:String>0.75  dB  (000011 =  3)</sys:String>
+                <sys:String>1.00  dB  (000100 =  4)</sys:String>
+                <sys:String>1.25  dB  (000101 =  5)</sys:String>
+                <sys:String>1.50  dB  (000110 =  6)</sys:String>
+                <sys:String>1.75  dB  (000111 =  7)</sys:String>
+                <sys:String>2.00  dB  (001000 =  8)</sys:String>
+                <sys:String>2.25  dB  (001001 =  9)</sys:String>
+                <sys:String>2.50  dB  (001010 = 10)</sys:String>
+                <sys:String>2.75  dB  (001011 = 11)</sys:String>
+                <sys:String>3.00  dB  (001100 = 12)</sys:String>
+                <sys:String>3.25  dB  (001101 = 13)</sys:String>
+                <sys:String>3.50  dB  (001110 = 14)</sys:String>
+                <sys:String>3.75  dB  (001111 = 15)</sys:String>
+                <sys:String>4.00  dB  (010000 = 16)</sys:String>
+                <sys:String>4.25  dB  (010001 = 17)</sys:String>
+                <sys:String>4.50  dB  (010010 = 18)</sys:String>
+                <sys:String>4.75  dB  (010011 = 19)</sys:String>
+                <sys:String>5.00  dB  (010100 = 20)</sys:String>
+                <sys:String>5.25  dB  (010101 = 21)</sys:String>
+                <sys:String>5.50  dB  (010110 = 22)</sys:String>
+                <sys:String>5.75  dB  (010111 = 23)</sys:String>
+                <sys:String>6.00  dB  (011000 = 24)</sys:String>
+                <sys:String>6.25  dB  (011001 = 25)</sys:String>
+                <sys:String>6.50  dB  (011010 = 26)</sys:String>
+                <sys:String>6.75  dB  (011011 = 27)</sys:String>
+                <sys:String>7.00  dB  (011100 = 28)</sys:String>
+                <sys:String>7.25  dB  (011101 = 29)</sys:String>
+                <sys:String>7.50  dB  (011110 = 30)</sys:String>
+                <sys:String>7.75  dB  (011111 = 31)</sys:String>
+            </x:Array>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox Grid.Column="0"><Label Grid.Column="0" Content="Phase and ATT Config"/></Viewbox>
+            <Viewbox Grid.Column="1">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" Name="CheckBox_ALL_DSA" Style="{StaticResource CHECKBOX_CONTENT_CENTER}" Content="All DSA" Checked="CheckBox_ALL_DSA_ChengeChecked" Unchecked="CheckBox_ALL_DSA_ChengeChecked"/>
+                    <ComboBox Grid.Column="1" x:Name="ComboBox_ALL_DSA" ItemsSource="{StaticResource DSA_List}" SelectedIndex="0" Margin="5" IsEnabled="False" SelectionChanged="ComboBox_ALL_DSA_SelectionChanged"/>
+                </Grid>
+            </Viewbox>
+            <Viewbox Grid.Column="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <CheckBox Grid.Column="0" Name="CheckBox_ALL_DPS" Style="{StaticResource CHECKBOX_CONTENT_CENTER}" Content="All DPS" Checked="CheckBox_ALL_DPS_ChengeChecked" Unchecked="CheckBox_ALL_DPS_ChengeChecked"/>
+                    <ComboBox Grid.Column="1" x:Name="ComboBox_ALL_DPS" ItemsSource="{StaticResource DPS_List}" SelectedIndex="0" Margin="5" IsEnabled="False" SelectionChanged="ComboBox_ALL_DPS_SelectionChanged"/>
+                </Grid>
+            </Viewbox>
         </Grid>
         <Viewbox Grid.Row="1">
-            <Grid>
+            <Grid x:Name="Grid_Ports">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -28,30 +233,30 @@
                     <ColumnDefinition Width="1*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <local:Port Grid.Row="0" Grid.Column="0" x:Name="Port1" PortNumber="0" BackgroundBrush="#7F00FF00"/>
-                <local:Port Grid.Row="0" Grid.Column="1" x:Name="Port2" PortNumber="1"/>
-                <local:Port Grid.Row="0" Grid.Column="2" x:Name="Port3" PortNumber="2"/>
-                <local:Port Grid.Row="0" Grid.Column="3" x:Name="Port4" PortNumber="3"/>
-                <local:Port Grid.Row="1" Grid.Column="0" x:Name="Port5" PortNumber="4"/>
-                <local:Port Grid.Row="1" Grid.Column="1" x:Name="Port6" PortNumber="5"/>
-                <local:Port Grid.Row="1" Grid.Column="2" x:Name="Port7" PortNumber="6"/>
-                <local:Port Grid.Row="1" Grid.Column="3" x:Name="Port8" PortNumber="7"/>
-                <local:Port Grid.Row="2" Grid.Column="0" x:Name="Port9" PortNumber="8"/>
-                <local:Port Grid.Row="2" Grid.Column="1" x:Name="Port10" PortNumber="9"/>
-                <local:Port Grid.Row="2" Grid.Column="2" x:Name="Port11" PortNumber="10"/>
-                <local:Port Grid.Row="2" Grid.Column="3" x:Name="Port12" PortNumber="11"/>
-                <local:Port Grid.Row="3" Grid.Column="0" x:Name="Port13" PortNumber="12"/>
-                <local:Port Grid.Row="3" Grid.Column="1" x:Name="Port14" PortNumber="13"/>
-                <local:Port Grid.Row="3" Grid.Column="2" x:Name="Port15" PortNumber="14"/>
-                <Grid Grid.Row="3" Grid.Column="3" x:Name="Port16" Background="Yellow">
+                <local:Port Grid.Row="0" Grid.Column="0" x:Name="Port01" Background="#7F00FF00" PortNumber="0"/>
+                <local:Port Grid.Row="0" Grid.Column="1" x:Name="Port02" Background="#7F00FF24" PortNumber="1"/>
+                <local:Port Grid.Row="0" Grid.Column="2" x:Name="Port03" Background="#7F00FF48" PortNumber="2"/>
+                <local:Port Grid.Row="0" Grid.Column="3" x:Name="Port04" Background="#7F00FF6C" PortNumber="3"/>
+                <local:Port Grid.Row="1" Grid.Column="0" x:Name="Port05" Background="#7F00FF90" PortNumber="4"/>
+                <local:Port Grid.Row="1" Grid.Column="1" x:Name="Port06" Background="#7F00FFB4" PortNumber="5"/>
+                <local:Port Grid.Row="1" Grid.Column="2" x:Name="Port07" Background="#7F00FFD8" PortNumber="6"/>
+                <local:Port Grid.Row="1" Grid.Column="3" x:Name="Port08" Background="#7F00FFFF" PortNumber="7"/>
+                <local:Port Grid.Row="2" Grid.Column="0" x:Name="Port09" Background="#7F00D8FF" PortNumber="8"/>
+                <local:Port Grid.Row="2" Grid.Column="1" x:Name="Port10" Background="#7F00B4FF" PortNumber="9"/>
+                <local:Port Grid.Row="2" Grid.Column="2" x:Name="Port11" Background="#7F0090FF" PortNumber="10"/>
+                <local:Port Grid.Row="2" Grid.Column="3" x:Name="Port12" Background="#7F006CFF" PortNumber="11"/>
+                <local:Port Grid.Row="3" Grid.Column="0" x:Name="Port13" Background="#7F0048FF" PortNumber="12"/>
+                <local:Port Grid.Row="3" Grid.Column="1" x:Name="Port14" Background="#7F0024FF" PortNumber="13"/>
+                <local:Port Grid.Row="3" Grid.Column="2" x:Name="Port15" Background="#7F0000FF" PortNumber="14"/>
+                <Grid Grid.Row="3" Grid.Column="3" x:Name="Port16" Background="#FFFFFF00">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="Port0"/>
-                    <ComboBox Grid.Row="1" Margin="5"/>
-                    <CheckBox Grid.Row="2" Margin="5" Content="Standby LNA"/>
+                    <Label Grid.Row="0" Content="J1 in / Port 16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Margin="5" Name="ComboBox_DSA16" ItemsSource="{StaticResource DSAin_List}" SelectedIndex="0" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
+                    <CheckBox Grid.Row="2" Margin="5" Name="CheckBox_STBLNA" Content="Standby LNA" Style="{StaticResource CHECKBOX_CONTENT_CENTER}" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="CheckBox_STBLNA_Checked" Unchecked="CheckBox_STBLNA_Unchecked" Indeterminate="CheckBox_STBLNA_Indeterminate"/>
                 </Grid>
             </Grid>
         </Viewbox>

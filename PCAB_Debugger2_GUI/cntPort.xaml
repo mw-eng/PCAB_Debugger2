@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
-             mc:Ignorable="d" 
-             Background="{Binding BackgroundBrush}">
+             mc:Ignorable="d" >
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type ComboBox}" x:Key="COMBOBOX_CONTENT_CENTER">
@@ -155,7 +154,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
         <Label Grid.Row="0" Content="Port 1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="Label_PortName"/>
-        <ComboBox Grid.Row="1" SelectedIndex="0" x:Name="ComboBox_DSA" Margin="5" ItemsSource="{StaticResource DSA_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
-        <ComboBox Grid.Row="2" SelectedIndex="0" x:Name="ComboBox_DPS" Margin="5" ItemsSource="{StaticResource DPS_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
+        <ComboBox Grid.Row="1" SelectedIndex="0" x:Name="ComboBox_DSA" IsEnabled="{Binding DSA_IsEnabled}" Margin="5" ItemsSource="{StaticResource DSA_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
+        <ComboBox Grid.Row="2" SelectedIndex="0" x:Name="ComboBox_DPS" IsEnabled="{Binding DPS_IsEnabled}" Margin="5" ItemsSource="{StaticResource DPS_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
     </Grid>
 </UserControl>
