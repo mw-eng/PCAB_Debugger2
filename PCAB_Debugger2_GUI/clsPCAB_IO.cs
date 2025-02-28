@@ -910,7 +910,10 @@ namespace PCAB_Debugger2_GUI
         {
             try
             {
+                var sw = new System.Diagnostics.Stopwatch();
+                sw.Start();
                 List<byte> ret = WriteReadSLIP(unit.GetCommandCode(new List<byte> { 0xEF }));
+                sw.Stop();
                 if (ret.Count == 10 + 2 * 15 || ret.Count == 10 || ret.Count == 2 * 15) { return new SensorValues(ret); }
                 else { throw new Exception("GetSensorValue Error.\nCount > " + ret?.Count + "\nDAT > " + BitConverter.ToString(ret?.ToArray())); }
             }

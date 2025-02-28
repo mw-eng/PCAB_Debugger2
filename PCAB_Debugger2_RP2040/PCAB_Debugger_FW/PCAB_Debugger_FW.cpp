@@ -207,7 +207,7 @@ void main_core0()
         if(tmpVALsBF.size() == tmpVALs.size()){tmpVALs.resize(tmpIDs.size(),0);}
         else{tmpVALs = std::move(tmpVALsBF);}
         sem_release(&sem);
-        sleep_ms(100);
+        sleep_ms(1000);
     }
     close_core1();
     return;
@@ -991,31 +991,15 @@ void main_core1()
                             tmp = analog->readADC4();
                             result.push_back((uint8_t)((tmp & 0xFF00) >> 8));
                             result.push_back((uint8_t)(tmp & 0x00FF) );
-#ifdef DEBUG_RASPICO
-                            std::vector<uint16_t> code = sens->readSENS();
-                            if(code.size() <= 0)
+
+                            sem_acquire_blocking(&sem);
+                            std::vector<uint16_t> code;
+                            code.clear();
+                            for(uint i = 0; i < tmpVALs.size(); i++)
                             {
-                                code.clear();
-                                code.push_back(0x0010);
-                                code.push_back(0x0020);
-                                code.push_back(0x0030);
-                                code.push_back(0x0040);
-                                code.push_back(0x0050);
-                                code.push_back(0x0060);
-                                code.push_back(0x0070);
-                                code.push_back(0x0080);
-                                code.push_back(0x0090);
-                                code.push_back(0x00A0);
-                                code.push_back(0x00B0);
-                                code.push_back(0x00C0);
-                                code.push_back(0x00D0);
-                                code.push_back(0x00E0);
-                                code.push_back(0x00F0);
-                                sleep_ms(500);
+                                code.push_back(tmpVALs[i]);
                             }
-#else
-                            std::vector<uint16_t> code = sens->readSENS();
-#endif
+                            sem_release(&sem);
                             for(uint i = 0; i < code.size(); i++)
                             {
                                 result.push_back((uint8_t)((code[i] & 0xFF00) >> 8));

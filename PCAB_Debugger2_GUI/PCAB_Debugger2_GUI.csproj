@@ -175,5 +175,8 @@
   <ItemGroup>
     <Resource Include="PCAB_Debugger2_GUI.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PCAB_Debugger2_GUI_Monitor.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

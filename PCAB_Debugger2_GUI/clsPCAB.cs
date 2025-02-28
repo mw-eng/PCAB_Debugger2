@@ -1,5 +1,4 @@
-﻿using PCAB_Debugger2_GUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Windows;
 using static PCAB_Debugger2_GUI.PCAB_TASK;
