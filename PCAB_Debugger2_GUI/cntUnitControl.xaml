@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
-             mc:Ignorable="d"
-             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+             mc:Ignorable="d">
     <UserControl.InputBindings>
         <KeyBinding Gesture="Ctrl+Shift+W" Command="{Binding Path = SetATTCommand}"/>
         <KeyBinding Gesture="Ctrl+Shift+P" Command="{Binding Path = SetPhaseCommand}"/>
@@ -987,10 +986,10 @@
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="18*"/>
+            <RowDefinition Height="21*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Viewbox Grid.Row="0" x:Name="Viewbox_UNIT"><local:Unit/></Viewbox>
+        <Grid Grid.Row="0" x:Name="Grid_UNIT"><local:Unit Grid.Row="0"/></Grid>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="3*"/>

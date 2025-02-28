@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="mli" Type="System.Int64" Scope="User">
-      <Value Profile="(Default)">1000</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="sn" Type="System.String" Scope="User">
       <Value Profile="(Default)">0000011@R,0000012@R,0000013@R,0000021@Z,0000022@Z,0000023@Z,0000031@Z,0000032@Z,0000033@Z</Value>

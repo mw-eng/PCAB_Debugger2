@@ -36,7 +36,8 @@ namespace PCAB_Debugger2_GUI
             InitializeComponent();
             SerialNumber = _serialNumber;
             CONFIG_SETTINGS = new Unit(_serialNumber, _rotate);
-            Viewbox_UNIT.Child = CONFIG_SETTINGS;
+            Grid_UNIT.Children.Clear();
+            Grid_UNIT.Children.Add(CONFIG_SETTINGS);
             CommandControl cmd = new CommandControl();
             cmd.CommandEvent += CommandEvent;
             this.DataContext = cmd;

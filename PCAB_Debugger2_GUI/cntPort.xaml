@@ -154,8 +154,8 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Port 1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="Label_PortName"/>
-        <ComboBox Grid.Row="1" SelectedIndex="0" x:Name="ComboBox_DSA" IsEnabled="{Binding DSA_IsEnabled}" Margin="5" ItemsSource="{StaticResource DSA_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
-        <ComboBox Grid.Row="2" SelectedIndex="0" x:Name="ComboBox_DPS" IsEnabled="{Binding DPS_IsEnabled}" Margin="5" ItemsSource="{StaticResource DPS_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
+        <Viewbox Grid.Row="0"><Label Content="Port 1" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" Name="Label_PortName"/></Viewbox>
+        <Viewbox Grid.Row="1"><ComboBox Grid.Row="1" SelectedIndex="0" x:Name="ComboBox_DSA" IsEnabled="{Binding DSA_IsEnabled}" Margin="5" ItemsSource="{StaticResource DSA_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/></Viewbox>
+        <Viewbox Grid.Row="2"><ComboBox Grid.Row="2" SelectedIndex="0" x:Name="ComboBox_DPS" IsEnabled="{Binding DPS_IsEnabled}" Margin="5" ItemsSource="{StaticResource DPS_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/></Viewbox>
     </Grid>
 </UserControl>

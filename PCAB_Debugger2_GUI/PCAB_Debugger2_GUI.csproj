@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>PCAB_Debugger2_GUI.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -55,8 +58,11 @@
     <Compile Include="cntAutoMeasure.xaml.cs">
       <DependentUpon>cntAutoMeasure.xaml</DependentUpon>
     </Compile>
-    <Compile Include="cntControl.xaml.cs">
-      <DependentUpon>cntControl.xaml</DependentUpon>
+    <Compile Include="cntControlTab.xaml.cs">
+      <DependentUpon>cntControlTab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="winLoop.xaml.cs">
+      <DependentUpon>winLoop.xaml</DependentUpon>
     </Compile>
     <Compile Include="winMonitor.xaml.cs">
       <DependentUpon>winMonitor.xaml</DependentUpon>
@@ -65,7 +71,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="cntControl.xaml">
+    <Page Include="cntControlTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -90,6 +96,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="winEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="winLoop.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -161,6 +171,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="PCAB_Debugger2_GUI.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

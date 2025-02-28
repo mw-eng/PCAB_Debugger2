@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
-             mc:Ignorable="d"
-             HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type CheckBox}" x:Key="CHECKBOX_CONTENT_CENTER">
@@ -189,7 +188,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="12*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
@@ -219,46 +218,44 @@
                 </Grid>
             </Viewbox>
         </Grid>
-        <Viewbox Grid.Row="1">
-            <Grid x:Name="Grid_Ports">
+        <Grid x:Name="Grid_Ports" Grid.Row="1" ShowGridLines="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <local:Port Grid.Row="0" Grid.Column="0" x:Name="Port01" Background="#7F00FF00" PortNumber="0"/>
+            <local:Port Grid.Row="0" Grid.Column="1" x:Name="Port02" Background="#7F00FF24" PortNumber="1"/>
+            <local:Port Grid.Row="0" Grid.Column="2" x:Name="Port03" Background="#7F00FF48" PortNumber="2"/>
+            <local:Port Grid.Row="0" Grid.Column="3" x:Name="Port04" Background="#7F00FF6C" PortNumber="3"/>
+            <local:Port Grid.Row="1" Grid.Column="0" x:Name="Port05" Background="#7F00FF90" PortNumber="4"/>
+            <local:Port Grid.Row="1" Grid.Column="1" x:Name="Port06" Background="#7F00FFB4" PortNumber="5"/>
+            <local:Port Grid.Row="1" Grid.Column="2" x:Name="Port07" Background="#7F00FFD8" PortNumber="6"/>
+            <local:Port Grid.Row="1" Grid.Column="3" x:Name="Port08" Background="#7F00FFFF" PortNumber="7"/>
+            <local:Port Grid.Row="2" Grid.Column="0" x:Name="Port09" Background="#7F00D8FF" PortNumber="8"/>
+            <local:Port Grid.Row="2" Grid.Column="1" x:Name="Port10" Background="#7F00B4FF" PortNumber="9"/>
+            <local:Port Grid.Row="2" Grid.Column="2" x:Name="Port11" Background="#7F0090FF" PortNumber="10"/>
+            <local:Port Grid.Row="2" Grid.Column="3" x:Name="Port12" Background="#7F006CFF" PortNumber="11"/>
+            <local:Port Grid.Row="3" Grid.Column="0" x:Name="Port13" Background="#7F0048FF" PortNumber="12"/>
+            <local:Port Grid.Row="3" Grid.Column="1" x:Name="Port14" Background="#7F0024FF" PortNumber="13"/>
+            <local:Port Grid.Row="3" Grid.Column="2" x:Name="Port15" Background="#7F0000FF" PortNumber="14"/>
+            <Grid Grid.Row="3" Grid.Column="3" x:Name="Port16" Background="#FFFFFF00">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-                <local:Port Grid.Row="0" Grid.Column="0" x:Name="Port01" Background="#7F00FF00" PortNumber="0"/>
-                <local:Port Grid.Row="0" Grid.Column="1" x:Name="Port02" Background="#7F00FF24" PortNumber="1"/>
-                <local:Port Grid.Row="0" Grid.Column="2" x:Name="Port03" Background="#7F00FF48" PortNumber="2"/>
-                <local:Port Grid.Row="0" Grid.Column="3" x:Name="Port04" Background="#7F00FF6C" PortNumber="3"/>
-                <local:Port Grid.Row="1" Grid.Column="0" x:Name="Port05" Background="#7F00FF90" PortNumber="4"/>
-                <local:Port Grid.Row="1" Grid.Column="1" x:Name="Port06" Background="#7F00FFB4" PortNumber="5"/>
-                <local:Port Grid.Row="1" Grid.Column="2" x:Name="Port07" Background="#7F00FFD8" PortNumber="6"/>
-                <local:Port Grid.Row="1" Grid.Column="3" x:Name="Port08" Background="#7F00FFFF" PortNumber="7"/>
-                <local:Port Grid.Row="2" Grid.Column="0" x:Name="Port09" Background="#7F00D8FF" PortNumber="8"/>
-                <local:Port Grid.Row="2" Grid.Column="1" x:Name="Port10" Background="#7F00B4FF" PortNumber="9"/>
-                <local:Port Grid.Row="2" Grid.Column="2" x:Name="Port11" Background="#7F0090FF" PortNumber="10"/>
-                <local:Port Grid.Row="2" Grid.Column="3" x:Name="Port12" Background="#7F006CFF" PortNumber="11"/>
-                <local:Port Grid.Row="3" Grid.Column="0" x:Name="Port13" Background="#7F0048FF" PortNumber="12"/>
-                <local:Port Grid.Row="3" Grid.Column="1" x:Name="Port14" Background="#7F0024FF" PortNumber="13"/>
-                <local:Port Grid.Row="3" Grid.Column="2" x:Name="Port15" Background="#7F0000FF" PortNumber="14"/>
-                <Grid Grid.Row="3" Grid.Column="3" x:Name="Port16" Background="#FFFFFF00">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="1*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" Content="J1 in / Port 16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
-                    <ComboBox Grid.Row="1" Margin="5" Name="ComboBox_DSA16" ItemsSource="{StaticResource DSAin_List}" SelectedIndex="0" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/>
-                    <CheckBox Grid.Row="2" Margin="5" Name="CheckBox_STBLNA" Content="Standby LNA" Style="{StaticResource CHECKBOX_CONTENT_CENTER}" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="CheckBox_STBLNA_Checked" Unchecked="CheckBox_STBLNA_Unchecked" Indeterminate="CheckBox_STBLNA_Indeterminate"/>
-                </Grid>
+                <Viewbox Grid.Row="0"><Label Content="J1 in / Port 16" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/></Viewbox>
+                <Viewbox Grid.Row="1"><ComboBox Margin="5" Name="ComboBox_DSA16" ItemsSource="{StaticResource DSAin_List}" SelectedIndex="0" Style="{StaticResource COMBOBOX_CONTENT_CENTER}"/></Viewbox>
+                <Viewbox Grid.Row="2"><CheckBox Margin="5" Name="CheckBox_STBLNA" Content="Standby LNA" Style="{StaticResource CHECKBOX_CONTENT_CENTER}" VerticalAlignment="Center" HorizontalAlignment="Center" Checked="CheckBox_STBLNA_Checked" Unchecked="CheckBox_STBLNA_Unchecked" Indeterminate="CheckBox_STBLNA_Indeterminate"/></Viewbox>
             </Grid>
-        </Viewbox>
+        </Grid>
     </Grid>
 </UserControl>

@@ -5,13 +5,184 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
         mc:Ignorable="d"
-        Title="winMain" Height="450" Width="800">
+        Title="PCAB Debugger" Height="720" Width="1280" Loaded="Window_Loaded" Closing="Window_Closing" Icon="/PCAB_Debugger2_GUI.ico">
+    <Window.Resources>
+        <Style TargetType="{x:Type TextBox}" x:Key="EDIT_TEXT_LINE">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="TextWrapping" Value="NoWrap" />
+            <Setter Property="IsReadOnly" Value="False" />
+        </Style>
+        <Style TargetType="{x:Type ComboBox}" x:Key="COMBOBOX_CONTENT_CENTER">
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="14px"/>
+            <Setter Property="FontFamily" Value="UD Digi Kyokasho N-R"/>
+        </Style>
+        <x:Array xmlns:sys="clr-namespace:System;assembly=mscorlib" xml:space="preserve" Type="{x:Type sys:String}" x:Key="BR_List">
+            <sys:String>    9,600</sys:String>
+            <sys:String>   14,400</sys:String>
+            <sys:String>   19,200</sys:String>
+            <sys:String>   38,400</sys:String>
+            <sys:String>   57,600</sys:String>
+            <sys:String>  115,200</sys:String>
+            <sys:String>  230,400</sys:String>
+            <sys:String>  460,800</sys:String>
+            <sys:String>  921,600</sys:String>
+            <sys:String>1,000,000</sys:String>
+            <sys:String>2,000,000</sys:String>
+            <sys:String>4,000,000</sys:String>
+            <sys:String>7,812,500</sys:String>
+            <sys:String>   19,201</sys:String>
+            <sys:String>   38,402</sys:String>
+            <sys:String>   57,603</sys:String>
+            <sys:String>  115,207</sys:String>
+            <sys:String>  230,414</sys:String>
+            <sys:String>  460,829</sys:String>
+            <sys:String>  920,810</sys:String>
+    </x:Array>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="8*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="5"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <local:UnitMonitor/>
-        <Button Grid.Row="1" Margin="5" Click="Button_Click"/>
+        <Grid Grid.Row="0" Grid.RowSpan="3" Panel.ZIndex="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <local:clsAsyncButton Grid.Column="6" x:Name="CONNECT_BUTTON"  Margin="5" Click="CONNECT_BUTTON_Click">
+                <Viewbox>
+                    <TextBlock x:Name="CONNECT_BUTTON_CONTENT">Connect</TextBlock>
+                </Viewbox>
+            </local:clsAsyncButton>
+        </Grid>
+        <Grid Grid.Row="1" Grid.RowSpan="5" Panel.ZIndex="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            <Expander Grid.Column="0" x:Name="CONFIG_EXPANDER" ExpandDirection="Down" IsExpanded="False" Background="#FFB8FFFD">
+                <Expander.Header>
+                    <Viewbox Height="25">
+                        <TextBlock Text="CONTROL CONFIG"/>
+                    </Viewbox>
+                </Expander.Header>
+                <Grid Grid.Row="1" x:Name="CONFIG_GRID" Background="#FFB8FFFD" Height="160" Margin="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox Grid.Row="0" Grid.Column="0" Margin="5">
+                            <CheckBox x:Name="SERIAL_PORTS_CHECKBOX1" Content="Serial Port 1" Checked="SERIAL_PORTS_CHECKBOX_Checked" Unchecked="SERIAL_PORTS_CHECKBOX_Unchecked"/>
+                        </Viewbox>
+                        <Viewbox Grid.Row="1" Grid.Column="0" Margin="5">
+                            <CheckBox x:Name="SERIAL_PORTS_CHECKBOX2" Content="Serial Port 2" Checked="SERIAL_PORTS_CHECKBOX_Checked" Unchecked="SERIAL_PORTS_CHECKBOX_Unchecked"/>
+                        </Viewbox>
+                        <Viewbox Grid.Row="2" Grid.Column="0" Margin="5">
+                            <CheckBox x:Name="SERIAL_PORTS_CHECKBOX3" Content="Serial Port 3" Checked="SERIAL_PORTS_CHECKBOX_Checked" Unchecked="SERIAL_PORTS_CHECKBOX_Unchecked"/>
+                        </Viewbox>
+                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX1" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="True"/>
+                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX2" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="False"/>
+                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX3" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="False"/>
+                        <Grid Grid.Row="0" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Right">
+                                <Label Content="Baud Rate"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1">
+                                <ComboBox x:Name="BAUD_RATE_COMBOBOX1" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center"  IsEnabled="False"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2" HorizontalAlignment="Left">
+                                <Label Content="[bps]"/>
+                            </Viewbox>
+                        </Grid>
+                        <Grid Grid.Row="1" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Right">
+                                <Label Content="Baud Rate"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1">
+                                <ComboBox x:Name="BAUD_RATE_COMBOBOX2" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center" IsEnabled="False"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2" HorizontalAlignment="Left">
+                                <Label Content="[bps]"/>
+                            </Viewbox>
+                        </Grid>
+                        <Grid Grid.Row="2" Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2.5*"/>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1.5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Right">
+                                <Label Content="Baud Rate"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1">
+                                <ComboBox x:Name="BAUD_RATE_COMBOBOX3" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center" IsEnabled="False"/>
+                            </Viewbox>
+                            <Viewbox Grid.Column="2" HorizontalAlignment="Left">
+                                <Label Content="[bps]"/>
+                            </Viewbox>
+                        </Grid>
+                    </Grid>
+                    <Grid Grid.Row="1" x:Name="SERIAL_CONFIG_GRID">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="10*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="30*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" HorizontalAlignment="Left">
+                                <Label Content="Monitor loop interval"/>
+                            </Viewbox>
+                            <TextBox Grid.Column="1" x:Name="WAITE_TIME_TEXTBOX" Style="{StaticResource EDIT_TEXT_LINE}" TextWrapping="Wrap" Text="1000" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" PreviewTextInput="DEC_TextBox_PreviewTextInput" CommandManager.PreviewExecuted="DEC_TextBox_PreviewExecuted" PreviewLostKeyboardFocus="DEC_TextBox_PreviewLostKeyboardForcus" FontSize="16"/>
+                            <Viewbox Grid.Column="2" HorizontalAlignment="Left">
+                                <Label Content="[mS]"/>
+                            </Viewbox>
+                        </Grid>
+                        <Grid Grid.Column="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="5*"/>
+                            </Grid.ColumnDefinitions>
+                            <Viewbox Grid.Column="0" Margin="5" HorizontalAlignment="Left">
+                                <Label Content="Serial Numbers"/>
+                            </Viewbox>
+                            <TextBox Grid.Column="1" x:Name="SERIAL_NUMBERS_TEXTBOX" Style="{StaticResource EDIT_TEXT_LINE}" TextWrapping="Wrap" Text="0000" Margin="5" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" PreviewTextInput="SN_TextBox_PreviewTextInput" CommandManager.PreviewExecuted="SN_TextBox_PreviewExecuted" PreviewLostKeyboardFocus="SN_TextBox_PreviewLostKeyboardForcus" FontSize="16"/>
+                        </Grid>
+                    </Grid>
+                </Grid>
+            </Expander>
+        </Grid>
+        <Grid Grid.Row="0" Grid.RowSpan="3" Background="#FFB8FFFD" Panel.ZIndex="0"/>
+        <Grid Grid.Row="4" Panel.ZIndex="0" x:Name="BOARD_GRID">
+            <local:ControlTab/>
+        </Grid>
     </Grid>
 </Window>

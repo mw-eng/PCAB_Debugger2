@@ -69,7 +69,8 @@ namespace PCAB_Debugger2_GUI
         {
             InitializeComponent();
             CONFIG_PORTS = new Ports(serialNumber, _turn);
-            Viewbox_Ports.Child = CONFIG_PORTS;
+            Grid_Ports.Children.Clear();
+            Grid_Ports.Children.Add(CONFIG_PORTS);
             CONFIG_PORTS.STBLNA_CheckboxClickEvent += STBLNA_CheckboxClickEvent;
             SerialNumber = serialNumber;
             CONFIG_PORTS.TURN = _turn;

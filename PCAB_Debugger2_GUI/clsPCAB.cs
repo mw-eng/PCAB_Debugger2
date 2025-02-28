@@ -5,7 +5,7 @@ using System.Windows;
 using static PCAB_Debugger2_GUI.PCAB_TASK;
 using static PCAB_Debugger2_GUI.Ports;
 
-namespace PCAB_Debugger_GUI
+namespace PCAB_Debugger2_GUI
 {
     public class PCAB
     {
@@ -33,7 +33,7 @@ namespace PCAB_Debugger_GUI
         }
         private PCAB_TASK _task;
         public bool? isOpen { get { return _task?.isOpen; } }
-        public List<UnitControl> PCAB_Boards {  get; private set; } = new List<UnitControl>();
+        public List<ControlTab> PCAB_Boards {  get; private set; } = new List<ControlTab>();
         public List<UnitMonitor> PCAB_Monitors { get; private set; } = new List<UnitMonitor>();
         public event EventHandler<PCABEventArgs> OnError;
         public PCAB_TASK serial { get { return _task; } }
@@ -60,7 +60,7 @@ namespace PCAB_Debugger_GUI
                 {
                     if (ret[snCNT])
                     {
-                        PCAB_Boards.Add(new UnitControl(_task.UNITs[cnt].SerialNumberASCII, SerialNumber_Posi[snCNT].RotateCODE));
+                        PCAB_Boards.Add(new ControlTab(_task.UNITs[cnt].SerialNumberASCII, SerialNumber_Posi[snCNT].RotateCODE));
                         PCAB_Monitors.Add(new UnitMonitor(_task.UNITs[cnt].SerialNumberASCII));
                         PCAB_Monitors[cnt].TITLE = "S/N, " + _task.UNITs[cnt].SerialNumberASCII;
                         cnt++;
