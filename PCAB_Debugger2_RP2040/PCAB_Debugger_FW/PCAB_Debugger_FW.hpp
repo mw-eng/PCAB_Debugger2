@@ -6,11 +6,51 @@
 #include "adc_library.hpp"
 #include "pico/multicore.h"
 
-#define DEBUG_RASPICO
+//#define DEBUG_RASPICO
 //#define DEBUG_BOOT_MODE 0x03
 //#define DEBUG_BOOT_MODE 0x0A
 //#define DEBUG_BOOT_MODE 0x0F
+//#define REV_0   //Type STM Test
+//#define REV_A   //Type Aircraft
+#define REV_B   //Type Satellite(TypeA1)
 
+#ifdef REV_0
+// IO Configure
+// UART PIN Configure
+#define UART_TX_PIN 0
+#define UART_RX_PIN 1
+#define RS485_DE_PIN 8
+// SPI PIN Configure
+#define SPI0_TX_PIN 7
+#define SPI0_RX_PIN 4
+#define SPI0_LE_PIN 5
+#define SPI0_CLK_PIN 6
+#define SPI1_TX_PIN 9
+#define SPI1_RX_PIN 22
+#define SPI1_LE_PIN 10
+#define SPI1_CLK_PIN 11
+// Onewire PIN Configure
+#define SNS_TEMP_PIN 24
+// MODE PIN Configure
+#define LPW_MOD_PIN 18
+#define STB_DRA_PIN 19
+#define STB_AMP_PIN 20
+#define STB_LNA_PIN 21
+#define DSA_D0_PIN 16
+#define DSA_D1_PIN 17
+#define DSA_D2_PIN 22
+#define DSA_D3_PIN 23
+#define DSA_D4_PIN 12
+// Switch PIN Configure
+//#define SW_1_PIN 2
+//#define SW_2_PIN 3
+#define SW_1_PIN 2
+#define SW_2_PIN 3
+#define SW_3_PIN 14
+#define SW_4_PIN 15
+#endif
+
+#ifdef REV_A
 // IO Configure
 // UART PIN Configure
 #define UART_TX_PIN 0
@@ -44,6 +84,43 @@
 #define SW_2_PIN 9
 #define SW_3_PIN 10
 #define SW_4_PIN 11
+#endif
+
+#ifdef REV_B
+// IO Configure
+// UART PIN Configure
+#define UART_TX_PIN 0
+#define UART_RX_PIN 1
+#define RS485_DE_PIN 2
+// SPI PIN Configure
+#define SPI0_TX_PIN 7
+#define SPI0_RX_PIN 4
+#define SPI0_LE_PIN 5
+#define SPI0_CLK_PIN 6
+#define SPI1_TX_PIN 15
+#define SPI1_RX_PIN 12
+#define SPI1_LE_PIN 13
+#define SPI1_CLK_PIN 14
+// Onewire PIN Configure
+#define SNS_TEMP_PIN 25
+// MODE PIN Configure
+#define LPW_MOD_PIN 18
+#define STB_DRA_PIN 19
+#define STB_AMP_PIN 20
+#define STB_LNA_PIN 21
+#define DSA_D0_PIN 16
+#define DSA_D1_PIN 17
+#define DSA_D2_PIN 22
+#define DSA_D3_PIN 23
+#define DSA_D4_PIN 24
+// Switch PIN Configure
+//#define SW_1_PIN 2
+//#define SW_2_PIN 3
+#define SW_1_PIN 8
+#define SW_2_PIN 9
+#define SW_3_PIN 10
+#define SW_4_PIN 11
+#endif
 
 // UART Configure
 //#define UART_BAUD_RATE 9600

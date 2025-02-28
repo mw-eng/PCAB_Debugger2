@@ -145,6 +145,7 @@ void setup()
     tmpIDs = sens->getSENS_ROMCODE();
 #endif
 #ifdef DEBUG_RASPICO
+    uint32_t time_us = time_us_32();
     tmpVALs.clear();
     tmpVALs.push_back(0x0010);
     tmpVALs.push_back(0x0020);
@@ -184,6 +185,7 @@ void main_core0()
 #ifdef DEBUG_RASPICO
         if(tmpVALsBF.size() <= 0)
         {
+            uint32_t time_us = time_us_32();
             tmpVALsBF.clear();
             tmpVALsBF.push_back(0x0010);
             tmpVALsBF.push_back(0x0020);
@@ -198,16 +200,16 @@ void main_core0()
             tmpVALsBF.push_back(0x00B0);
             tmpVALsBF.push_back(0x00C0);
             tmpVALsBF.push_back(0x00D0);
-            tmpVALsBF.push_back(0x00E0);
-            tmpVALsBF.push_back(0x00F0);
+            tmpVALsBF.push_back((time_us >> 16) & 0xFFFF);
+            tmpVALsBF.push_back(time_us & 0xFFFF);
             sleep_ms(500);
         }
 #endif
         sem_acquire_blocking(&sem);
-        if(tmpVALsBF.size() == tmpVALs.size()){tmpVALs.resize(tmpIDs.size(),0);}
-        else{tmpVALs = std::move(tmpVALsBF);}
+        if(tmpVALsBF.size() == tmpVALs.size()) { tmpVALs = tmpVALsBF; }
+        else { tmpVALs.resize(tmpIDs.size(),0); }
         sem_release(&sem);
-        sleep_ms(1000);
+        sleep_ms(100);
     }
     close_core1();
     return;
