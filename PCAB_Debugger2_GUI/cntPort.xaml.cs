@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Windows.Controls;
-using System
 
 namespace PCAB_Debugger2_GUI
 {

@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Management" />
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
@@ -57,6 +58,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="cntUnit.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="cntUnitControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="cntUnitMonitor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="winMain.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -65,12 +78,27 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="clsAsyncButton.cs" />
+    <Compile Include="clsPCAB_IO.cs" />
+    <Compile Include="clsPNA835x.cs" />
+    <Compile Include="clsSearchList.cs" />
+    <Compile Include="clsSERIAL.cs" />
+    <Compile Include="clsSLIP.cs" />
     <Compile Include="clsVisa32.cs" />
     <Compile Include="cntPort.xaml.cs">
       <DependentUpon>cntPort.xaml</DependentUpon>
     </Compile>
     <Compile Include="cntPorts.xaml.cs">
       <DependentUpon>cntPorts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cntUnit.xaml.cs">
+      <DependentUpon>cntUnit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cntUnitControl.xaml.cs">
+      <DependentUpon>cntUnitControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="cntUnitMonitor.xaml.cs">
+      <DependentUpon>cntUnitMonitor.xaml</DependentUpon>
     </Compile>
     <Compile Include="winMain.xaml.cs">
       <DependentUpon>winMain.xaml</DependentUpon>

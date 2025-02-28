@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PCAB_Debugger2_GUI"
-             mc:Ignorable="d" 
-             Background="White">
+             mc:Ignorable="d">
     <UserControl.Resources>
         <ResourceDictionary>
             <Style TargetType="{x:Type CheckBox}" x:Key="CHECKBOX_CONTENT_CENTER">
