@@ -1026,8 +1026,8 @@
                         <ComboBox x:Name="SAVEADDRESS_COMBOBOX" SelectedIndex="0" Margin="5" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" ItemsSource="{StaticResource STATE_List}" DropDownClosed="SAVEADDRESS_COMBOBOX_DropDownClosed"/>
                     </Viewbox>
                 </Grid>
-                <Button Grid.Column="1" x:Name="LOADDMEM" Margin="5" Click="LOADMEM_Click"><Viewbox><TextBlock>Load Memory</TextBlock></Viewbox></Button>
-                <Button Grid.Column="2" x:Name="SAVEMEM" Margin="5" Click="SAVEMEM_Click"><Viewbox><TextBlock>Save Mem</TextBlock></Viewbox></Button>
+                <Button Grid.Column="1" x:Name="LOADDMEM" Margin="5" Click="LOADMEM_Click"><Viewbox><TextBlock>Load MEM</TextBlock></Viewbox></Button>
+                <Button Grid.Column="2" x:Name="SAVEMEM" Margin="5" Click="SAVEMEM_Click"><Viewbox><TextBlock>Save MEM</TextBlock></Viewbox></Button>
                 <Button Grid.Column="3" x:Name="RESET" Margin="5" Click="RESET_Click"><Viewbox><TextBlock>Preset</TextBlock></Viewbox></Button>
             </Grid>
         </Grid>
