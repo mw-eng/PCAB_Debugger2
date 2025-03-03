@@ -92,7 +92,7 @@
                                 <Label Content="Baud Rate"/>
                             </Viewbox>
                             <Viewbox Grid.Column="1">
-                                <ComboBox x:Name="BAUD_RATE_COMBOBOX" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center"  IsEnabled="False"/>
+                                <ComboBox x:Name="BAUD_RATE_COMBOBOX" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center"/>
                             </Viewbox>
                             <Viewbox Grid.Column="2" HorizontalAlignment="Left">
                                 <Label Content="[bps]"/>

@@ -130,6 +130,40 @@ namespace PCAB_Debugger2_GUI
                 }));
             }
         }
+        public string TEMPmax
+        {
+            get { return TMP_MAX_LABEL.Content.ToString(); }
+            set
+            {
+                Dispatcher.BeginInvoke(new Action(() => {
+                    TMP_MAX_LABEL.Content = value;
+                    try
+                    {
+                        if (float.Parse(value) > maxTMP) { TMP_MAX_LABEL.Background = maxColor; }
+                        else if (float.Parse(value) < minTMP) { TMP_MAX_LABEL.Background = minColor; }
+                        else { TMP_MAX_LABEL.Background = normColor; }
+                    }
+                    catch { TMP_MAX_LABEL.Background = errColor; }
+                }));
+            }
+        }
+        public string TEMPmin
+        {
+            get { return TMP_MIN_LABEL.Content.ToString(); }
+            set
+            {
+                Dispatcher.BeginInvoke(new Action(() => {
+                    TMP_MIN_LABEL.Content = value;
+                    try
+                    {
+                        if (float.Parse(value) > maxTMP) { TMP_MIN_LABEL.Background = maxColor; }
+                        else if (float.Parse(value) < minTMP) { TMP_MIN_LABEL.Background = minColor; }
+                        else { TMP_MIN_LABEL.Background = normColor; }
+                    }
+                    catch { TMP_MIN_LABEL.Background = errColor; }
+                }));
+            }
+        }
         public string TEMP01ID
         {
             get { return TEMP01CODE.Content.ToString(); }
@@ -761,6 +795,8 @@ namespace PCAB_Debugger2_GUI
             SNSvd = "---";
             SNSid = "---";
             TEMPavg = "---";
+            TEMPmax = "---";
+            TEMPmin = "---";
             TITLE = "";
             SerialNumber = SN;
             for (uint i = 1; i < 16; i++)

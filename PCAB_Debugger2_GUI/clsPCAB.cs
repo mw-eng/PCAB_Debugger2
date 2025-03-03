@@ -97,12 +97,18 @@ namespace PCAB_Debugger2_GUI
                     if (e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values?.Length == 15)
                     {
                         float avg = 0;
+                        float max = float.MinValue;
+                        float min = float.MaxValue;
                         for (uint i = 0; i < e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values.Length; i++)
                         {
                             avg += e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values[i];
                             PCAB_Monitors[cnt].SetTempValue(i + 1, e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values[i].ToString("0.00"));
+                            if (max < e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values[i]) { max = e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values[i]; }
+                            if (min > e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values[i]) { min = e.ReceiveDAT[cnt].SensorValuesNOW.Temprature.Values[i]; }
                         }
                         PCAB_Monitors[cnt].TEMPavg = (avg / 15.0f).ToString("0.00");
+                        PCAB_Monitors[cnt].TEMPmax = max.ToString("0.00");
+                        PCAB_Monitors[cnt].TEMPmin = min.ToString("0.00");
                     }
                     if(e.ReceiveDAT[cnt].SensorValuesNOW.ID.IDs?.Length == 15)
                     {

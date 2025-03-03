@@ -86,5 +86,7 @@ No | 項目 | 内容
 4-4 | SNS Id | Id電流(単位：A)
 4-5 | SNS Vd | Vd電圧(単位：V)
 4-6 | TMP AVG | 1wire温度センサの平均値(単位：℃)
+4-6 | MIN AVG | 1wire温度センサの最小値(単位：℃)
+4-6 | MAX AVG | 1wire温度センサの最大値(単位：℃)
 4-7 | Tempurature | 1wire温度センサのID(HEX値)と温度(単位：℃)
 

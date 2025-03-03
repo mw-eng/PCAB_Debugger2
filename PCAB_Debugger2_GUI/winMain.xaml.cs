@@ -65,6 +65,8 @@ namespace PCAB_Debugger2_GUI
             this.Title += "_DEBUG MODE";
             BOARD_GRID.IsEnabled = true;
             //CONFIG_EXPANDER.IsExpanded = false;
+            //winMonitor win = new winMonitor(); win.Show();
+            //Settings.Default.Reset();
 #endif
 #if DEBUG_RESET
             Settings.Default.Reset();

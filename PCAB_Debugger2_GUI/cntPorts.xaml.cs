@@ -175,12 +175,12 @@ namespace PCAB_Debugger2_GUI
                 case 7: return (int)Port07.DPS;
                 case 8: return (int)Port08.DPS;
                 case 9: return (int)Port09.DPS;
-                case 10: return (int)Port10.DSA;
-                case 11: return (int)Port11.DSA;
-                case 12: return (int)Port12.DSA;
-                case 13: return (int)Port13.DSA;
-                case 14: return (int)Port14.DSA;
-                case 15: return (int)Port15.DSA;
+                case 10: return (int)Port10.DPS;
+                case 11: return (int)Port11.DPS;
+                case 12: return (int)Port12.DPS;
+                case 13: return (int)Port13.DPS;
+                case 14: return (int)Port14.DPS;
+                case 15: return (int)Port15.DPS;
                 default: throw new ArgumentException("A non-existent DPS number was specified.", "GetDPS[" + number + "]");
             }
         }
