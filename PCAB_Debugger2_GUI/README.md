@@ -74,7 +74,7 @@ No | 項目 | 内容
 ウィンドウはPCABと通信開始後に自動起動し、通信終了時に自動で閉じられます。<br>
 *画像は1対1通信時のウィンドウで、1対多通信時はユニット毎に行列で表示されます。*<br>
 <br>
-<br><img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_GUI/assets/UI3.png?raw=true" width="600px"><br>
+<br><img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_GUI/assets/UI3.png?raw=true" width="300px"><br>
 <br>
 ${\color{Magenta} 4. \space Sensor \space display \space Window}$<br>
 No | 項目 | 内容
