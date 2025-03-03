@@ -1,14 +1,13 @@
 ﻿using System;
-using System.IO;
-using System.Text;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using static PCAB_Debugger2_GUI.agPNA835x;
 using static PCAB_Debugger2_GUI.PCAB_TASK;
-using System.Linq;
 
 namespace PCAB_Debugger2_GUI
 {
@@ -109,10 +108,11 @@ namespace PCAB_Debugger2_GUI
                 if (owner.GetScreen_Enable == true) { saveSCR = true; }
                 if (owner.GetTrace_Enable == true) { saveTRA = true; }
                 instr = new agPNA835x(new IEEE488dot2.Instrument(new VisaResource(), owner.VISA_Address));
-                instr.Instrument.SetTimeout((int)owner.VISA_Timeout);
                 //Get instrument configure
                 try
                 {
+                    instr.Open();
+                    instr.Instrument.SetTimeout((int)owner.VISA_Timeout);
                     IEEE488dot2.IEEE488_IDN idn = instr.Instrument.IDN();
                     channels.Clear();
                     if (owner.Channel == -1)
@@ -140,6 +140,7 @@ namespace PCAB_Debugger2_GUI
                     {
                         sheets.Add(i);
                     }
+                    instr.Close();
                 }
                 catch
                 {
@@ -185,6 +186,7 @@ namespace PCAB_Debugger2_GUI
                 }
 
             }
+            if (owner.GetScreen_Enable == true || owner.GetTrace_Enable == true) { try { instr.Open(); } catch { ExitErrTASK(); }            }
             Task task = Task.Factory.StartNew(() => { LOOP_Task(waitTIME); });
         }
 
@@ -222,7 +224,7 @@ namespace PCAB_Debugger2_GUI
                         {
                             foreach (int p in dsa)
                             {
-                                dsaNOW[p -1] = (uint)cnf.dsa;
+                                dsaNOW[p - 1] = (uint)cnf.dsa;
                             }
                             if (!_serial.PCAB_WriteDSA(serialNum, dsaNOW.ToList())) { ExitErrTASK(); return; }
                             filePath += "_DSA" + cnf.dsa.ToString("00");
@@ -253,7 +255,8 @@ namespace PCAB_Debugger2_GUI
                             return;
                         }
 
-                        if(!string.IsNullOrWhiteSpace(dirPath)){
+                        if (!string.IsNullOrWhiteSpace(dirPath))
+                        {
                             //Save Screen
                             if (saveSCR)
                             {
@@ -437,7 +440,9 @@ namespace PCAB_Debugger2_GUI
 
         private void ExitNormTASK()
         {
-            Dispatcher.BeginInvoke(new Action(() => {
+            instr?.Close();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
                 MessageBox.Show("Loop function is done.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 this.DialogResult = true;
                 this.Close();
@@ -446,18 +451,22 @@ namespace PCAB_Debugger2_GUI
 
         private void ExitErrTASK()
         {
-            Dispatcher.BeginInvoke(new Action(() => {
+            instr?.Close();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
                 MessageBox.Show("Loop function.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 this.DialogResult = false;
-                this.Close(); 
+                this.Close();
             }));
         }
 
         private void ExitCancelTASK()
         {
-            Dispatcher.BeginInvoke(new Action(() => {
+            instr?.Close();
+            Dispatcher.BeginInvoke(new Action(() =>
+            {
                 MessageBox.Show("Loop function is cancel.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                this.DialogResult = true; 
+                this.DialogResult = true;
                 this.Close();
             }));
         }
@@ -472,6 +481,7 @@ namespace PCAB_Debugger2_GUI
 
         private void OnError(object sender, PCABEventArgs e)
         {
+            instr?.Close();
             Dispatcher.BeginInvoke(new Action(() =>
             {
                 this.DialogResult = false;

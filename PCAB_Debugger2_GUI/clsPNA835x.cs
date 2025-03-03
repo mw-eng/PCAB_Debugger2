@@ -24,9 +24,15 @@ namespace PCAB_Debugger2_GUI
         #endregion
 
         /// <summary>コンストラクタ</summary>
-        public agPNA835x(IEEE488dot2.Instrument Instrument)        { instr = Instrument; }
+        public agPNA835x(IEEE488dot2.Instrument Instrument) { instr = Instrument; }
 
         public IEEE488dot2.Instrument Instrument { get { return instr; } }
+
+        /// <summary>VISA32 Open</summary>
+        public void Open() { instr.Open(); }
+
+        /// <summary>VISA32 Close</summary>
+        public void Close() { instr.Close(); }
 
         /// <summary>Get Trigger Mode</summary>
         /// <param name="ch">Channel</param>
@@ -173,7 +179,7 @@ namespace PCAB_Debugger2_GUI
             }
             else
             {
-                using(FileStream fs = new FileStream(filePATH, FileMode.Create, FileAccess.Write))
+                using (FileStream fs = new FileStream(filePATH, FileMode.Create, FileAccess.Write))
                 {
                     fs.Write(byIMG, 0, byIMG.Length);
                 }
@@ -189,7 +195,7 @@ namespace PCAB_Debugger2_GUI
 
         public string getASCII() { return instr.ReadAsciiBlock().Trim('\n').Trim('\"'); }
 
-        public string getASCII(string cmd) { setSCPIcommand(cmd);return getASCII(); }
+        public string getASCII(string cmd) { setSCPIcommand(cmd); return getASCII(); }
 
     }
 }

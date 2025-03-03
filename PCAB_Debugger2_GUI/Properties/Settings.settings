@@ -38,32 +38,11 @@
     <Setting Name="winMonitorMaximized" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="spCaption1" Type="System.String" Scope="User">
+    <Setting Name="spCaption" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="spCaption2" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="spCaption3" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
-    <Setting Name="spBaudRate1" Type="System.Int32" Scope="User">
+    <Setting Name="spBaudRate" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">9</Value>
-    </Setting>
-    <Setting Name="spBaudRate2" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9</Value>
-    </Setting>
-    <Setting Name="spBaudRate3" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">9</Value>
-    </Setting>
-    <Setting Name="spEnable1" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
-    <Setting Name="spEnable2" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="spEnable3" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="visaAddr" Type="System.String" Scope="User">
       <Value Profile="(Default)">TCPIP0::localhost::hislip0::INSTR</Value>

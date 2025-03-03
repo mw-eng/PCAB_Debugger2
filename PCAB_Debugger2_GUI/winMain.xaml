@@ -69,35 +69,20 @@
                         <TextBlock Text="CONTROL CONFIG"/>
                     </Viewbox>
                 </Expander.Header>
-                <Grid Grid.Row="1" x:Name="CONFIG_GRID" Background="#FFB8FFFD" Height="160" Margin="5">
+                <Grid Grid.Row="1" x:Name="CONFIG_GRID" Background="#FFB8FFFD" Height="100" Margin="5">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="3*"/>
+                        <RowDefinition Height="1*"/>
                         <RowDefinition Height="1*"/>
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                            <RowDefinition Height="1*"/>
-                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="6*"/>
+                            <ColumnDefinition Width="3*"/>
                         </Grid.ColumnDefinitions>
-                        <Viewbox Grid.Row="0" Grid.Column="0" Margin="5">
-                            <CheckBox x:Name="SERIAL_PORTS_CHECKBOX1" Content="Serial Port 1" Checked="SERIAL_PORTS_CHECKBOX_Checked" Unchecked="SERIAL_PORTS_CHECKBOX_Unchecked"/>
-                        </Viewbox>
-                        <Viewbox Grid.Row="1" Grid.Column="0" Margin="5">
-                            <CheckBox x:Name="SERIAL_PORTS_CHECKBOX2" Content="Serial Port 2" Checked="SERIAL_PORTS_CHECKBOX_Checked" Unchecked="SERIAL_PORTS_CHECKBOX_Unchecked"/>
-                        </Viewbox>
-                        <Viewbox Grid.Row="2" Grid.Column="0" Margin="5">
-                            <CheckBox x:Name="SERIAL_PORTS_CHECKBOX3" Content="Serial Port 3" Checked="SERIAL_PORTS_CHECKBOX_Checked" Unchecked="SERIAL_PORTS_CHECKBOX_Unchecked"/>
-                        </Viewbox>
-                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX1" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="True"/>
-                        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX2" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="False"/>
-                        <ComboBox Grid.Row="2" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX3" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="False"/>
-                        <Grid Grid.Row="0" Grid.Column="2">
+                        <Viewbox Grid.Column="0" Margin="5"><Label Content="Serial Port"/></Viewbox>
+                        <ComboBox Grid.Row="0" Grid.Column="1" x:Name="SERIAL_PORTS_COMBOBOX" Margin="5" VerticalContentAlignment="Center" DropDownOpened="SERIAL_PORTS_COMBOBOX_DropDownOpened" DropDownClosed="SERIAL_PORTS_COMBOBOX_DropDownClosed" IsEnabled="True"/>
+                        <Grid Grid.Row="0" Grid.Column="2" Margin="5">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2.5*"/>
                                 <ColumnDefinition Width="3*"/>
@@ -107,39 +92,7 @@
                                 <Label Content="Baud Rate"/>
                             </Viewbox>
                             <Viewbox Grid.Column="1">
-                                <ComboBox x:Name="BAUD_RATE_COMBOBOX1" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center"  IsEnabled="False"/>
-                            </Viewbox>
-                            <Viewbox Grid.Column="2" HorizontalAlignment="Left">
-                                <Label Content="[bps]"/>
-                            </Viewbox>
-                        </Grid>
-                        <Grid Grid.Row="1" Grid.Column="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2.5*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" HorizontalAlignment="Right">
-                                <Label Content="Baud Rate"/>
-                            </Viewbox>
-                            <Viewbox Grid.Column="1">
-                                <ComboBox x:Name="BAUD_RATE_COMBOBOX2" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center" IsEnabled="False"/>
-                            </Viewbox>
-                            <Viewbox Grid.Column="2" HorizontalAlignment="Left">
-                                <Label Content="[bps]"/>
-                            </Viewbox>
-                        </Grid>
-                        <Grid Grid.Row="2" Grid.Column="2">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2.5*"/>
-                                <ColumnDefinition Width="3*"/>
-                                <ColumnDefinition Width="1.5*"/>
-                            </Grid.ColumnDefinitions>
-                            <Viewbox Grid.Column="0" HorizontalAlignment="Right">
-                                <Label Content="Baud Rate"/>
-                            </Viewbox>
-                            <Viewbox Grid.Column="1">
-                                <ComboBox x:Name="BAUD_RATE_COMBOBOX3" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center" IsEnabled="False"/>
+                                <ComboBox x:Name="BAUD_RATE_COMBOBOX" SelectedIndex="9" ItemsSource="{StaticResource BR_List}" Style="{StaticResource COMBOBOX_CONTENT_CENTER}" Margin="5" FontSize="16" VerticalContentAlignment="Center"  IsEnabled="False"/>
                             </Viewbox>
                             <Viewbox Grid.Column="2" HorizontalAlignment="Left">
                                 <Label Content="[bps]"/>

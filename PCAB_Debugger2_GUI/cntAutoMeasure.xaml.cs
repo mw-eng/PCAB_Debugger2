@@ -1,19 +1,10 @@
 ﻿using PCAB_Debugger2_GUI.Properties;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using static PCAB_Debugger2_GUI.IEEE488dot2;
 
 namespace PCAB_Debugger2_GUI
@@ -149,8 +140,10 @@ namespace PCAB_Debugger2_GUI
             {
                 IEEE488dot2.Instrument instr;
                 instr = new Instrument(new VisaResource(), strBF);
+                instr.Open();
                 instr.SetTimeout(int.Parse(VNALOOP_TIMEOUT_TEXTBOX.Text));
                 IEEE488_IDN idn = instr.IDN();
+                instr.Close();
                 instr.Dispose();
                 MessageBox.Show("Vender\t\t: " + idn.Vender +
                               "\nModel Number\t: " + idn.ModelNumber +

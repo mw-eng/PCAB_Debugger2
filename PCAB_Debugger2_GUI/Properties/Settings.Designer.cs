@@ -171,108 +171,24 @@ namespace PCAB_Debugger2_GUI.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string spCaption1 {
+        public string spCaption {
             get {
-                return ((string)(this["spCaption1"]));
+                return ((string)(this["spCaption"]));
             }
             set {
-                this["spCaption1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string spCaption2 {
-            get {
-                return ((string)(this["spCaption2"]));
-            }
-            set {
-                this["spCaption2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string spCaption3 {
-            get {
-                return ((string)(this["spCaption3"]));
-            }
-            set {
-                this["spCaption3"] = value;
+                this["spCaption"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public int spBaudRate1 {
+        public int spBaudRate {
             get {
-                return ((int)(this["spBaudRate1"]));
+                return ((int)(this["spBaudRate"]));
             }
             set {
-                this["spBaudRate1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public int spBaudRate2 {
-            get {
-                return ((int)(this["spBaudRate2"]));
-            }
-            set {
-                this["spBaudRate2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("9")]
-        public int spBaudRate3 {
-            get {
-                return ((int)(this["spBaudRate3"]));
-            }
-            set {
-                this["spBaudRate3"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool spEnable1 {
-            get {
-                return ((bool)(this["spEnable1"]));
-            }
-            set {
-                this["spEnable1"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool spEnable2 {
-            get {
-                return ((bool)(this["spEnable2"]));
-            }
-            set {
-                this["spEnable2"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool spEnable3 {
-            get {
-                return ((bool)(this["spEnable3"]));
-            }
-            set {
-                this["spEnable3"] = value;
+                this["spBaudRate"] = value;
             }
         }
         

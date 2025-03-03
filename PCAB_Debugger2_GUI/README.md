@@ -21,7 +21,7 @@ ${\color{Aqua} 1. \space 設定画面}$<br>
 No | 項目 | 内容
 :--|:--|:--
 1-1 | Connect Button | PCABと通信を開始
-1-2 | Serial Port | PCABに接続されているシリアルポートを選択する(チェックボックスにチェックが入っている物が有効となり最大3ポートまで同時に使用可能)
+1-2 | Serial Port | PCABに接続されているシリアルポートを選択
 1-3 | Baud Rate | PCABと通信するボーレート(*BAUD RATE*)を選択
 1-4 | Monitor loop inberval | センサモニタ(温度や電圧等)のデータ取得間隔をミリ秒で指定
 1-5 | Serial Numbers | 通信対象のシリアル番号を指定<br>1対多通信を行う場合は","で区切り指定する。<br>ポートの行列表示順を指定する場合は@で区切り"SN1@Z,SN2@R"の様に指定する事も可能(表示指定コードを以下に示す)<br>Z : default<br>R : Rotate right 90 degrees<br>L : Rotate left 90 degrees<br>H : Rotate 180 degrees<br>ZM : default mirror<br>R : Rotate right 90 degrees and then mirror<br>L : Rotate left 90 degrees and then mirror<br>H : Rotate 180 degrees and then mirror
