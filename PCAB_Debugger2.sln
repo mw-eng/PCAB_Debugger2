@@ -5,6 +5,8 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCAB_Debugger2_GUI", "PCAB_Debugger2_GUI\PCAB_Debugger2_GUI.csproj", "{F918DD6A-2434-41AF-AC83-E85752A84775}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "PCAB_Debugger2_GUI_Setup", "PCAB_Debugger2_GUI_Setup\PCAB_Debugger2_GUI_Setup.vdproj", "{967BE896-BFE5-21BB-823B-9D8775549D06}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug_Reset|Any CPU = Debug_Reset|Any CPU
@@ -18,8 +20,15 @@ Global
 		{F918DD6A-2434-41AF-AC83-E85752A84775}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F918DD6A-2434-41AF-AC83-E85752A84775}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F918DD6A-2434-41AF-AC83-E85752A84775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{967BE896-BFE5-21BB-823B-9D8775549D06}.Debug_Reset|Any CPU.ActiveCfg = Debug
+		{967BE896-BFE5-21BB-823B-9D8775549D06}.Debug|Any CPU.ActiveCfg = Debug
+		{967BE896-BFE5-21BB-823B-9D8775549D06}.Release|Any CPU.ActiveCfg = Release
+		{967BE896-BFE5-21BB-823B-9D8775549D06}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5D07EBA5-A0D2-4083-A809-0387648CE40F}
 	EndGlobalSection
 EndGlobal
