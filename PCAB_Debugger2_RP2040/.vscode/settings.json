@@ -87,5 +87,8 @@
         }
     },
     "cmake.buildBeforeRun": true,
-    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.configureArgs": ["-DCMAKE_BUILD_TYPE=Release"],
+    "cmake.generator": "Ninja"
 }
