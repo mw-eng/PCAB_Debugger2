@@ -3,7 +3,7 @@
 本プログラムは[PCAB_Debugger](https://github.com/mw-eng/PCAB_Debugger)から不要となった機能(POS連動制御等)の削除とプログラム構成の見直しを行い再構築しました。<br>
 製品化を目的として作成したものではありませんので、評価のみでご使用ください。本プログラムに関連して生じた、いかなる損害についても一切の責任を負いません。<br>
 本プログラムは本体ファームウェアと制御を行うGUI部分から構成されており、シリアルインターフェースを使用したコマンドによる制御も可能です。<br>
-コマンドについては、PCAB_Debugger2_RP2040 [README.md](./PCAB_Debugger2_RP2040/README.md).を参照してください。<br>
+コマンドについては、PCAB_Debugger2_RP2040 [README.md](./PCAB_Debugger2_RP2040/README.md)を参照してください。<br>
 
 ## PCAB_Debugger2_GUI
 これは基本となるGUI制御プログラムです。
