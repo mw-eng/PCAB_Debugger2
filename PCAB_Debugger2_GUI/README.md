@@ -14,7 +14,7 @@
 ### メインウィンドウ
 設定および制御は本画面のみで行います。<br>
 *画像は1対1通信時のウィンドウで、1対多通信時はユニット毎に"CONTROL"と"AUTO"で複数タブが生成されます。*<br>
-<br><img src="https://github.com/mw-eng/PCAB_Debugger/blob/master/PCAB_Debugger_GUI/assets/UI1_Ex.png?raw=true" width="600px"><br>
+<br><img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_GUI/assets/UI1_Ex.png?raw=true" width="600px"><br>
 <br>
 ${\color{Aqua} 1. \space 設定画面}$<br>
 No | 項目 | 内容
@@ -26,7 +26,7 @@ No | 項目 | 内容
 1-5 | Serial Numbers | 通信対象のシリアル番号を指定<br>1対多通信を行う場合は","で区切り指定する。<br>ポートの行列表示順を指定する場合は@で区切り"SN1@Z,SN2@R"の様に指定する事も可能(表示指定コードを以下に示す)<br>Z : default<br>R : Rotate right 90 degrees<br>L : Rotate left 90 degrees<br>H : Rotate 180 degrees<br>ZM : default mirror<br>R : Rotate right 90 degrees and then mirror<br>L : Rotate left 90 degrees and then mirror<br>H : Rotate 180 degrees and then mirror
 
 
-<br><img src="https://github.com/mw-eng/PCAB_Debugger/blob/master/PCAB_Debugger_GUI/assets/UI1.png?raw=true" width="600px"><br>
+<br><img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_GUI/assets/UI1.png?raw=true" width="600px"><br>
 <br>
 ${\color{Gold} 2. \space CONTROL \space TAB}$<br>
 No | 項目 | 内容
@@ -47,7 +47,7 @@ No | 項目 | 内容
 2-1 | Preset Button | プリセットをメモリから読込み(工場出荷時の設定値を読込み)
 
 
-<br><img src="https://github.com/mw-eng/PCAB_Debugger/blob/master/PCAB_Debugger_GUI/assets/UI2.png?raw=true" width="600px"><br>
+<br><img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_GUI/assets/UI2.png?raw=true" width="600px"><br>
 <br>
 ${\color{LightSkyBlue} 3. \space AUTO \space TAB \space}$ Automatic measurement control<br>
 No | 項目 | 内容
@@ -74,7 +74,7 @@ No | 項目 | 内容
 ウィンドウはPCABと通信開始後に自動起動し、通信終了時に自動で閉じられます。<br>
 *画像は1対1通信時のウィンドウで、1対多通信時はユニット毎に行列で表示されます。*<br>
 <br>
-<br><img src="https://github.com/mw-eng/PCAB_Debugger/blob/master/PCAB_Debugger_GUI/assets/UI3.png?raw=true" width="600px"><br>
+<br><img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_GUI/assets/UI3.png?raw=true" width="600px"><br>
 <br>
 ${\color{Magenta} 4. \space Sensor \space display \space Window}$<br>
 No | 項目 | 内容

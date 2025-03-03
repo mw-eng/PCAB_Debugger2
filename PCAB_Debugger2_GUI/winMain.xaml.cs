@@ -61,10 +61,13 @@ namespace PCAB_Debugger2_GUI
             this.Title += " Ver," + System.Diagnostics.FileVersionInfo.GetVersionInfo(System.Reflection.Assembly.GetExecutingAssembly().Location).ProductVersion;
             BOARD_GRID.IsEnabled = false;
             CONFIG_EXPANDER.IsExpanded = true;
-#if DEBUG_RESET
-            Settings.Default.Reset();
+#if DEBUG_RESET || DEBUG
             this.Title += "_DEBUG MODE";
             BOARD_GRID.IsEnabled = true;
+            //CONFIG_EXPANDER.IsExpanded = false;
+#endif
+#if DEBUG_RESET
+            Settings.Default.Reset();
 #endif
             try
             {

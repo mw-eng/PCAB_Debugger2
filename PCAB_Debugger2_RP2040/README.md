@@ -172,7 +172,7 @@ OROM {x-yz} {HEX} | ROMのセクタデータを上書き<br>{x-yz} : *ブロッ�
 オンボードハードウェアスイッチ(SW1) の状態による設定一覧<br>
 *SW1およびSW2は出力ピンに割当てられているため、OFF状態に固定する必要が有る*
 
-<img src="https://github.com/mw-eng/PCAB_Debugger/blob/master/PCAB_Debugger_RP2040/assets/SW1.png?raw=true" width="100px"> 0 = OFF(H) / 1 = ON(L)  
+<img src="https://github.com/mw-eng/PCAB_Debugger2/blob/master/PCAB_Debugger2_RP2040/assets/SW1.png?raw=true" width="100px"> 0 = OFF(H) / 1 = ON(L)  
   
 <details open>
 <summary>スイッチ状態 0x00 ～ 0x0F</summary>
