@@ -612,38 +612,20 @@ namespace PCAB_Debugger2_GUI
 
         private void CheckBox_STBLNA_Checked(object sender, RoutedEventArgs e)
         {
-            if (typeof(CheckBox) == sender.GetType())
-            {
-                STBLNA_CheckboxClickEvent?.Invoke(this, e, true);
-            }
-            else
-            {
-                CheckBox_STBLNA.IsChecked = true;
-            }
+            if (sender is CheckBox) { STBLNA_CheckboxClickEvent?.Invoke(this, e, true); }
+            else { CheckBox_STBLNA.IsChecked = true; }
         }
 
         private void CheckBox_STBLNA_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (typeof(CheckBox) == sender.GetType())
-            {
-                STBLNA_CheckboxClickEvent?.Invoke(this, e, false);
-            }
-            else
-            {
-                CheckBox_STBLNA.IsChecked = false;
-            }
+            if (sender is CheckBox) { STBLNA_CheckboxClickEvent?.Invoke(this, e, false); }
+            else { CheckBox_STBLNA.IsChecked = false; }
         }
 
         private void CheckBox_STBLNA_Indeterminate(object sender, RoutedEventArgs e)
         {
-            if (typeof(CheckBox) == sender.GetType())
-            {
-                STBLNA_CheckboxClickEvent?.Invoke(this, e, null);
-            }
-            else
-            {
-                CheckBox_STBLNA.IsChecked = null;
-            }
+            if (sender is CheckBox) { STBLNA_CheckboxClickEvent?.Invoke(this, e, null); }
+            else { CheckBox_STBLNA.IsChecked = null; }
         }
     }
 }

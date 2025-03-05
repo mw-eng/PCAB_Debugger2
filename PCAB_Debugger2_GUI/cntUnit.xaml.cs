@@ -83,10 +83,10 @@ namespace PCAB_Debugger2_GUI
 
         private void CHECKBOX_Changed(object sender, RoutedEventArgs e, bool? isChecked)
         {
-            if (typeof(CheckBox) == sender.GetType())
+            if (sender is CheckBox cb)
             {
                 CheckBoxCategory cat = CheckBoxCategory.NULL;
-                switch (((CheckBox)sender).Name)
+                switch (cb.Name)
                 {
                     case "CheckBox_STBAMP": cat = CheckBoxCategory.StandbyAMP; break;
                     case "CheckBox_STBDRA": cat = CheckBoxCategory.StandbyDRA; break;
@@ -95,9 +95,9 @@ namespace PCAB_Debugger2_GUI
                 }
                 CheckboxClickEvent?.Invoke(this, e, cat, isChecked);
             }
-            else
+            else if(sender is string str)
             {
-                switch ((string)sender)
+                switch (str)
                 {
                     case "STBAMP": CheckBox_STBAMP.IsChecked = isChecked; break;
                     case "STBDRA": CheckBox_STBDRA.IsChecked = isChecked; break;
