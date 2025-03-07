@@ -4,13 +4,12 @@
 #define ROM_BLOCK_NUM PICO_FLASH_SIZE_BYTES / FLASH_BLOCK_SIZE
 const static std::string FW_VENDOR = "Orient Microwave Corp.";
 const static std::string FW_MODEL = "LX00-0004-00";
-const static std::string FW_REV = "2.0.0";
+const static std::string FW_REV = "2.0.2";
 
 #ifdef DEBUG_RASPICO
     #define DSA_D3_PIN 8
     #define DSA_D4_PIN 9
     #define DSA_D4_PIN 10
-    #define SNS_TEMP_PIN 24
     #define SW_2_PIN 3
     #define SW_3_PIN SW_1_PIN
     #define SW_4_PIN SW_1_PIN
@@ -120,105 +119,64 @@ void setup()
     lowMODE = false;
     //Read Factory State
     readSTATE(15u, 0u, 0u);
-
     if(bootMode == 0x01 || bootMode == 0x03) { readSTATE(14u, 0u, 0u); }
     writeNowSTATE();
     if(bootMode == 0x0A) { uart->setBaudRate(UART_BAUD_RATE); saveSTATE(14u, 0u, 0u); }
-#ifdef DEBUG_RASPICO
-    tmpIDs.clear();
-    tmpIDs.push_back(0xFF00000000000001);
-    tmpIDs.push_back(0xFF00000000000002);
-    tmpIDs.push_back(0xFF00000000000003);
-    tmpIDs.push_back(0xFF00000000000004);
-    tmpIDs.push_back(0xFF00000000000005);
-    tmpIDs.push_back(0xFF00000000000006);
-    tmpIDs.push_back(0xFF00000000000007);
-    tmpIDs.push_back(0xFF00000000000008);
-    tmpIDs.push_back(0xFF00000000000009);
-    tmpIDs.push_back(0xFF0000000000000A);
-    tmpIDs.push_back(0xFF0000000000000B);
-    tmpIDs.push_back(0xFF0000000000000C);
-    tmpIDs.push_back(0xFF0000000000000D);
-    tmpIDs.push_back(0xFF0000000000000E);
-    tmpIDs.push_back(0xFF0000000000000F);
-#else
     tmpIDs = sens->getSENS_ROMCODE();
+#ifdef DEBUG_RASPICO
+    for(uint i = tmpIDs.size(); i < 15; i++)
+    {
+        tmpIDs.push_back(0xFF00000000000000 | (i + 1));
+    }
 #endif
+    tmpVALs = sens->readSENS();
 #ifdef DEBUG_RASPICO
     uint32_t time_us = time_us_32();
-    tmpVALs.clear();
-    tmpVALs.push_back(0x0010);
-    tmpVALs.push_back(0x0020);
-    tmpVALs.push_back(0x0030);
-    tmpVALs.push_back(0x0040);
-    tmpVALs.push_back(0x0050);
-    tmpVALs.push_back(0x0060);
-    tmpVALs.push_back(0x0070);
-    tmpVALs.push_back(0x0080);
-    tmpVALs.push_back(0x0090);
-    tmpVALs.push_back(0x00A0);
-    tmpVALs.push_back(0x00B0);
-    tmpVALs.push_back(0x00C0);
-    tmpVALs.push_back(0x00D0);
-    tmpVALs.push_back(0x00E0);
-    tmpVALs.push_back(0x00F0);
-#else
-    tmpVALs = sens->readSENS();
+    for(uint i = tmpVALs.size(); i < tmpIDs.size(); i++)
+    {
+        tmpVALs.push_back((time_us >> i) & 0xFFFF);
+    }
+    sleep_ms(500);
 #endif
-    if(tmpIDs.size()!=tmpVALs.size()){tmpVALs.resize(tmpIDs.size(),0);}
 }
 
 int main()
 {
     setup();
-    multicore_launch_core1(main_core1); //通信処理をcore1で開始
-    main_core0(); //1-wire温度センサの値更新をcore0で開始
+    multicore_launch_core1(main_core1);
+    main_core0();
     return 0;
 }
 
-//Core0は1-wire温度センサの値取得と更新を割当
+//Core1は1-wire温度センサの値取得と更新を割当
 void main_core0()
 {
-    while (1)
+    multicore_lockout_victim_init();
+    while (true)
     {
-        std::vector<uint16_t> tmpVALsBF = sens->readSENS();
+        std::vector<uint16_t> tmpVALsBF;
+        tmpVALsBF = sens->readSENS();
 #ifdef DEBUG_RASPICO
-        if(tmpVALsBF.size() <= 0)
+        uint32_t time_us = time_us_32();
+        for(uint i = tmpVALsBF.size(); i < tmpIDs.size(); i++)
         {
-            uint32_t time_us = time_us_32();
-            tmpVALsBF.clear();
-            tmpVALsBF.push_back(0x0010);
-            tmpVALsBF.push_back(0x0020);
-            tmpVALsBF.push_back(0x0030);
-            tmpVALsBF.push_back(0x0040);
-            tmpVALsBF.push_back(0x0050);
-            tmpVALsBF.push_back(0x0060);
-            tmpVALsBF.push_back(0x0070);
-            tmpVALsBF.push_back(0x0080);
-            tmpVALsBF.push_back(0x0090);
-            tmpVALsBF.push_back(0x00A0);
-            tmpVALsBF.push_back(0x00B0);
-            tmpVALsBF.push_back(0x00C0);
-            tmpVALsBF.push_back(0x00D0);
-            tmpVALsBF.push_back((time_us >> 16) & 0xFFFF);
-            tmpVALsBF.push_back(time_us & 0xFFFF);
-            sleep_ms(500);
+            tmpVALsBF.push_back((time_us >> i) & 0xFFFF);
         }
+        sleep_ms(700);
 #endif
         sem_acquire_blocking(&sem);
-        if(tmpVALsBF.size() == tmpVALs.size()) { tmpVALs = tmpVALsBF; }
-        else { tmpVALs.resize(tmpIDs.size(),0); }
+        if(tmpVALsBF.size() == tmpIDs.size()) { tmpVALs.assign(tmpVALsBF.begin(), tmpVALsBF.end()); }
         sem_release(&sem);
-        sleep_ms(100);
+        sleep_ms(300);
     }
     close_core1();
     return;
 }
 
-//Core1では通信と各種設定変更処理を割当
+//Core0では通信と各種設定変更処理を割当
 void main_core1()
 {
-    while (1)
+    while (true)
     {
         pcabCMD::CommandLine cmd = uart->readCMD(modeECHO, modeBCM);
         if((cmd.serialNum.size() > 0 && (String::strCompare(cmd.serialNum, "*", true) || String::strCompare(cmd.serialNum, serialNum, true))) || (cmd.serialNum.size() == 0 && cmd.romID == romID))
@@ -994,19 +952,13 @@ void main_core1()
                             result.push_back((uint8_t)((tmp & 0xFF00) >> 8));
                             result.push_back((uint8_t)(tmp & 0x00FF) );
 
-                            sem_acquire_blocking(&sem);
-                            std::vector<uint16_t> code;
-                            code.clear();
+                            multicore_lockout_start_blocking();
                             for(uint i = 0; i < tmpVALs.size(); i++)
                             {
-                                code.push_back(tmpVALs[i]);
+                                result.push_back((uint8_t)((tmpVALs[i] & 0xFF00) >> 8));
+                                result.push_back((uint8_t)(tmpVALs[i] & 0x00FF) );
                             }
-                            sem_release(&sem);
-                            for(uint i = 0; i < code.size(); i++)
-                            {
-                                result.push_back((uint8_t)((code[i] & 0xFF00) >> 8));
-                                result.push_back((uint8_t)(code[i] & 0x00FF) );
-                            }
+                            multicore_lockout_end_blocking();
                             uart->writeSLIP_block(result);
                         }
                     }
@@ -1155,7 +1107,9 @@ void main_core1()
                             if(!Convert::TryToUInt8(cmd.argments[1].substr(2 * i, 2) , 16, romDAT[i]))
                             { uart->writeLine("ERR > Write data error."); break; }
                         }
+                        multicore_lockout_start_blocking();
                         if(!flash::writeROM(blockNum, sectorpageNum, romDAT)) { uart->writeLine("ERR > Address error."); break; }
+                        multicore_lockout_end_blocking();
                         uart->writeLine("DONE > Write ROM block " + Convert::ToString(blockNum, 16, 2) + " - sector " + Convert::ToString(sectorpageNum / 0x10u, 16, 1) + " - page " + Convert::ToString(sectorpageNum % 0x10u, 16, 1) + ".");
                     }
                     break;
@@ -1170,7 +1124,9 @@ void main_core1()
                         if(!Convert::TryToUInt16(strVect[0], 16, blockNum)) { uart->writeLine("ERR > Block number error."); break; }
                         if(!Convert::TryToUInt8(strVect[1], 16, sectorNum)) { uart->writeLine("ERR > Sector number error."); break; }
                         if(!romAddressRangeCheck(blockNum, sectorNum)) { uart->writeLine("ERR > Address is outside the range specified in boot mode."); break; }
+                        multicore_lockout_start_blocking();
                         if(!flash::eraseROM(blockNum, sectorNum)) { uart->writeLine("ERR > Address error."); break; }
+                        multicore_lockout_end_blocking();
                         uart->writeLine("DONE > Erase ROM block " + Convert::ToString(blockNum, 16, 2) + " - sector " + Convert::ToString(sectorNum, 16, 1) + ".");
                     }
                     break;
@@ -1185,7 +1141,9 @@ void main_core1()
                             {
                                 uint16_t blockNum = (1u << 8) * cmd.argment[0] + cmd.argment[1];
                                 uint8_t sectorNum = cmd.argment[2];
+                                multicore_lockout_start_blocking();
                                 if(!flash::overwriteROMsector(blockNum, sectorNum / 0x10u, &cmd.argment[3])) { uart->writeSLIP_block(retCODE(0xFE)); }
+                                multicore_lockout_end_blocking();
                                 uart->writeSLIP_block(retCODE(0x00));
                             }
                         }
@@ -1209,7 +1167,9 @@ void main_core1()
                                 if(!Convert::TryToUInt8(cmd.argments[1].substr(2 * i, 2) , 16, romDAT[i]))
                                 { uart->writeLine("ERR > Write data error."); break; }
                             }
+                            multicore_lockout_start_blocking();
                             if(!flash::overwriteROMpage(blockNum, sectorpageNum, romDAT)) { uart->writeLine("ERR > Address error."); break; }
+                            multicore_lockout_end_blocking();
                             uart->writeLine("DONE > Write ROM block " + Convert::ToString(blockNum, 16, 2) + " - sector " + Convert::ToString(sectorpageNum / 0x10u, 16, 1) + " - page " + Convert::ToString(sectorpageNum % 0x10u, 16, 1) + ".");
                         }
                     }
@@ -1226,7 +1186,9 @@ void main_core1()
                         for(uint i = 0; i < cmd.argments[0].size() ; i ++) { pageBF[FLASH_PAGE_SIZE - 0x10u + i] = cmd.argments[0][i]; }
                         for(uint i = cmd.argments[0].size(); i < 0x0Fu; i ++) { pageBF[FLASH_PAGE_SIZE - 0x10u + i] = 0; }
                         pageBF[FLASH_PAGE_SIZE - 1] = cmd.argments[0].size();
+                        multicore_lockout_start_blocking();
                         flash::overwriteROMpage(PICO_FLASH_SIZE_BYTES - FLASH_PAGE_SIZE, pageBF);
+                        multicore_lockout_end_blocking();
                         serialNum = cmd.argments[0];
                         uart->writeLine("DONE > Write serial number.");
                     }
@@ -1397,7 +1359,6 @@ void main_core1()
             }
         }
     }
-    close_core0();
     return;
 }
 
@@ -1501,7 +1462,10 @@ bool saveSTATE(const uint8_t &sectorNum, const uint8_t &pageNum, const uint8_t &
     pageBF[stateNum * 0x40 + NUMBER_OF_SYSTEM] = ioBF;
     for(uint i = 0; i < NUMBER_OF_SYSTEM ; i ++) { pageBF[stateNum * 0x40 + NUMBER_OF_SYSTEM + 1 + i] = dsaNOW[i]; }
     pageBF[stateNum * 0x40 + NUMBER_OF_SYSTEM + 1 + NUMBER_OF_SYSTEM] = dsaNOW[NUMBER_OF_SYSTEM];
-    return flash::overwriteROMpage(PICO_FLASH_SIZE_BYTES / FLASH_BLOCK_SIZE - 1, sectorNum, pageNum, pageBF);
+    multicore_lockout_start_blocking();
+    bool ret = flash::overwriteROMpage(PICO_FLASH_SIZE_BYTES / FLASH_BLOCK_SIZE - 1, sectorNum, pageNum, pageBF);
+    multicore_lockout_end_blocking(); 
+    return ret;
 }
 
 bool readSTATE(const uint8_t &sectorNum, const uint8_t &pageNum, const uint8_t &stateNum)
