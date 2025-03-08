@@ -77,7 +77,6 @@ namespace PCAB_Debugger2_GUI
             }
             catch
             {
-                visa32Resource.Dispose();
                 visa32Resource = null;
             }
             SERIAL_PORTS_COMBOBOX_RELOAD(sender, e);

@@ -56,6 +56,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
         "Release"
@@ -227,15 +235,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:PCAB_Debugger2_GUI"
-        "ProductCode" = "8:{214E5A4A-5F13-487F-A7A0-9573320FBB2D}"
-        "PackageCode" = "8:{9BC596C8-CF19-4CD4-98D2-F1CA27874B14}"
+        "ProductCode" = "8:{72563526-6AA4-48DE-84E5-7E3AB56DD712}"
+        "PackageCode" = "8:{584894B2-E238-4A04-A255-F28DF418D5D5}"
         "UpgradeCode" = "8:{E5B3F17C-60A9-435F-BCAA-3FBAD5CF5016}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:2.0.1"
+        "ProductVersion" = "8:2.0.2"
         "Manufacturer" = "8:OrientMicrowaveCorp."
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -777,7 +785,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_B60F833E7749485BAAE8C88B148D9975"
             {
-            "SourcePath" = "8:..\\PCAB_Debugger2_GUI\\obj\\Release\\PCAB_Debugger2_GUI.exe"
+            "SourcePath" = "8:..\\PCAB_Debugger2_GUI\\obj\\Debug\\PCAB_Debugger2_GUI.exe"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_C9346A42EE234D9BA172DE0FB88F4C0D"
